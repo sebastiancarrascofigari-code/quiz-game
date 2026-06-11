@@ -34,4 +34,74 @@
         },
         {
           "text": "¿En cuántos países opera MercadoLibre?",
-          "options": ["10
+          "options": ["10", "14", "18", "22"],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "name": "Ronda 2 — Productos",
+      "emoji": "📦",
+      "timePerQuestion": 12,
+      "questions": [
+        {
+          "text": "¿Cómo se llama el servicio de logística de MercadoLibre?",
+          "options": ["MeLi Envíos", "Mercado Envíos", "ML Logistics", "EnvíoLibre"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué es Mercado Crédito?",
+          "options": ["Una tarjeta de crédito", "Un servicio de préstamos y financiamiento", "Un programa de puntos", "Un banco digital"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué es el nivel FULL en Mercado Envíos?",
+          "options": ["Envío express en 2 horas", "Stock almacenado en bodegas de MeLi con despacho rápido", "Envío gratis para compradores", "Logística internacional"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué es una 'publicación de catálogo'?",
+          "options": ["Una publicación destacada pagada", "Una publicación vinculada a la ficha oficial del producto en MeLi", "Una publicación con video", "Una publicación solo para grandes vendedores"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué significa CVR en e-commerce?",
+          "options": ["Cost vs Revenue", "Conversion Rate", "Customer Value Rate", "Click Volume Ratio"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "name": "Ronda 3 — Lógica",
+      "emoji": "🧠",
+      "timePerQuestion": 12,
+      "questions": [
+        {
+          "text": "Si tienes 1000 visitas y 50 ventas, ¿cuál es tu CVR?",
+          "options": ["0.5%", "5%", "50%", "0.05%"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué métrica mide el valor total de ventas procesadas en una plataforma?",
+          "options": ["GMV", "ROI", "CAC", "LTV"],
+          "correct": 0
+        },
+        {
+          "text": "Si el ticket promedio sube 10% y el volumen baja 5%, ¿el NMV sube o baja?",
+          "options": ["Sube ~4.5%", "Baja ~4.5%", "Se mantiene igual", "No se puede saber"],
+          "correct": 0
+        },
+        {
+          "text": "¿Qué es un test A/B?",
+          "options": ["Un tipo de encuesta", "Un experimento donde se comparan dos versiones para ver cuál funciona mejor", "Un reporte de ventas mensual", "Un método de segmentación de clientes"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cuál de estas NO es una métrica de activación de usuarios?",
+          "options": ["DAU", "WAU", "MAU", "ROI"],
+          "correct": 3
+        }
+      ]
+    }
+  ]
+}
