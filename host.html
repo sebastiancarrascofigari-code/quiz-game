@@ -69,4 +69,251 @@
   .rank-pos { font-size: 20px; font-weight: 800; width: 40px; }
   .rank-name { flex: 1; font-weight: 600; }
   .rank-score { font-size: 18px; font-weight: 800; color: var(--yellow); }
-  #answers-progress { font-size: 13
+  #answers-progress { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .progress-bar { width: 100%; height: 4px; background: var(--border); border-radius: 2px; margin-top: 6px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--yellow); border-radius: 2px; transition: width .3s; }
+</style>
+</head>
+<body>
+<header>
+  <div class="badge" id="badge">🎮 QUIZ GAME</div>
+  <h1 id="game-title">Cargando...</h1>
+  <p class="subtitle" id="game-subtitle">Panel del Facilitador</p>
+</header>
+<div class="container">
+  <div class="status-bar">
+    <div>
+      <span class="status-dot" id="status-dot"></span>
+      <span id="status-text">Esperando equipos...</span>
+    </div>
+    <div class="timer" id="timer">00:00</div>
+  </div>
+  <div class="rounds" id="rounds-container"></div>
+  <div class="question-panel" id="question-panel">
+    <div class="q-meta" id="q-meta"></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="options" id="q-options"></div>
+    <div id="answers-progress"></div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+  <div class="winner-panel" id="winner-panel">
+    <div class="winner-emoji" id="winner-emoji">🏆</div>
+    <div class="winner-title">GANADOR</div>
+    <div class="winner-name" id="winner-name"></div>
+    <div class="winner-score" id="winner-score"></div>
+    <div class="ranking-list" id="ranking-list"></div>
+  </div>
+  <div class="grid-2">
+    <div class="panel">
+      <div class="panel-title">Equipos Conectados</div>
+      <div id="teams-list"><div style="color:var(--muted);font-size:14px;">Esperando conexiones...</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Marcador</div>
+      <div id="scores-list"></div>
+    </div>
+  </div>
+  <button class="btn btn-primary" id="btn-start" disabled>▶ INICIAR JUEGO</button>
+  <div id="next-countdown" style="display:none;text-align:center;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:10px;font-size:15px;color:var(--muted);margin-top:8px;">Siguiente pregunta en <span id="countdown-num" style="color:var(--yellow);font-weight:800;font-size:20px;">3</span>s</div>
+  <button class="btn btn-secondary" id="btn-reset">↺ Reiniciar</button>
+</div>
+<script>
+const socket = io();
+let config = null;
+let teams = [];
+let currentQ = null;
+let timerInterval = null;
+let timeLeft = 0;
+let answeredCount = 0;
+
+fetch('/api/config').then(r => r.json()).then(c => {
+  config = c;
+  teams = c.teams;
+  document.getElementById('badge').textContent = '🎮 ' + c.title.toUpperCase();
+  document.getElementById('game-title').textContent = c.title;
+  document.getElementById('game-subtitle').textContent = `Panel del Facilitador · ${c.totalQuestions} preguntas · ${c.totalRounds} rondas`;
+  document.title = c.title + ' — Facilitador';
+  const rc = document.getElementById('rounds-container');
+  c.rounds.forEach((r, i) => {
+    const chip = document.createElement('div');
+    chip.className = 'round-chip';
+    chip.id = `round-chip-${i}`;
+    chip.textContent = `${r.emoji} ${r.name} (${r.count})`;
+    rc.appendChild(chip);
+  });
+  renderScores({});
+  renderTeams([]);
+});
+
+socket.emit('host:join');
+
+socket.on('host:state', (state) => {
+  renderTeams(state.connectedTeams || []);
+  renderScores(state.scores || {});
+});
+
+socket.on('host:team-connected', ({ connectedTeams }) => {
+  renderTeams(connectedTeams);
+  const connected = connectedTeams.length;
+  if (connected > 0) document.getElementById('btn-start').disabled = false;
+  document.getElementById('status-text').textContent = `${connected} equipo${connected !== 1 ? 's' : ''} conectado${connected !== 1 ? 's' : ''}`;
+  document.getElementById('status-dot').classList.add('active');
+});
+
+socket.on('host:team-disconnected', ({ connectedTeams }) => {
+  renderTeams(connectedTeams);
+  if (connectedTeams.length === 0) {
+    document.getElementById('btn-start').disabled = true;
+    document.getElementById('status-dot').classList.remove('active');
+    document.getElementById('status-text').textContent = 'Esperando equipos...';
+  }
+});
+
+socket.on('game:start', () => {
+  document.getElementById('btn-start').style.display = 'none';
+  document.getElementById('status-text').textContent = '¡Juego iniciado!';
+});
+
+socket.on('host:question', (q) => {
+  currentQ = q;
+  answeredCount = 0;
+  showQuestion(q);
+  document.getElementById('next-countdown').style.display = 'none';
+  updateAnswerProgress(0, teams.length);
+  clearInterval(timerInterval);
+  timeLeft = q.timeLimit;
+  updateTimer(timeLeft);
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimer(timeLeft);
+    if (timeLeft <= 0) clearInterval(timerInterval);
+  }, 1000);
+  document.querySelectorAll('.round-chip').forEach((c, i) => {
+    c.classList.toggle('active', i === q.roundIndex);
+  });
+});
+
+socket.on('host:answer-received', ({ answeredCount: count, totalTeams }) => {
+  answeredCount = count;
+  updateAnswerProgress(count, totalTeams);
+});
+
+socket.on('question:reveal', ({ correctIndex, answers, totalScores, autoAdvanceIn }) => {
+  clearInterval(timerInterval);
+  updateTimer(0);
+  const opts = document.querySelectorAll('#q-options .option');
+  opts.forEach((el, i) => {
+    el.classList.toggle('correct', i === correctIndex);
+    el.classList.toggle('wrong', i !== correctIndex);
+  });
+  renderScores(totalScores);
+  renderTeamsWithAnswers(answers, correctIndex);
+  document.getElementById('status-text').textContent = 'Respuesta revelada — avanzando automáticamente...';
+  const cd = document.getElementById('next-countdown');
+  const cdNum = document.getElementById('countdown-num');
+  cd.style.display = 'block';
+  let secs = autoAdvanceIn || 3;
+  cdNum.textContent = secs;
+  const cdInterval = setInterval(() => {
+    secs--;
+    cdNum.textContent = Math.max(0, secs);
+    if (secs <= 0) { clearInterval(cdInterval); cd.style.display = 'none'; }
+  }, 1000);
+});
+
+socket.on('round:start', ({ roundIndex, roundName, roundEmoji, scores }) => {
+  renderScores(scores);
+  document.getElementById('status-text').textContent = `▶ ${roundEmoji} ${roundName}`;
+  document.getElementById('question-panel').style.display = 'none';
+  document.getElementById('next-countdown').style.display = 'none';
+});
+
+socket.on('host:end', ({ rankings }) => {
+  clearInterval(timerInterval);
+  document.getElementById('question-panel').style.display = 'none';
+  document.getElementById('next-countdown').style.display = 'none';
+  const wp = document.getElementById('winner-panel');
+  wp.style.display = 'block';
+  const winner = rankings[0];
+  document.getElementById('winner-emoji').textContent = winner.emoji || '🏆';
+  document.getElementById('winner-name').textContent = winner.name;
+  document.getElementById('winner-score').textContent = winner.score.toLocaleString() + ' puntos';
+  document.getElementById('ranking-list').innerHTML = rankings.map((t, i) => `
+    <div class="rank-row">
+      <div class="rank-pos">${['🥇','🥈','🥉'][i] || (i+1)+'.'}</div>
+      <div class="rank-name">${t.emoji || ''} ${t.name}</div>
+      <div class="rank-score">${t.score.toLocaleString()}</div>
+    </div>
+  `).join('');
+  document.getElementById('status-text').textContent = '🏁 Juego terminado';
+});
+
+socket.on('game:reset', () => location.reload());
+
+document.getElementById('btn-start').addEventListener('click', () => socket.emit('host:start'));
+document.getElementById('btn-reset').addEventListener('click', () => {
+  if (confirm('¿Seguro que quieres reiniciar el juego?')) socket.emit('host:reset');
+});
+
+function showQuestion(q) {
+  document.getElementById('question-panel').style.display = 'block';
+  document.getElementById('q-meta').textContent = `${q.roundEmoji} ${q.roundName}  ·  Pregunta ${q.questionIndex + 1}/${q.totalInRound}  ·  ${q.globalIndex}/${q.totalQuestions} en total`;
+  document.getElementById('q-text').textContent = q.text;
+  const letters = ['A', 'B', 'C', 'D'];
+  document.getElementById('q-options').innerHTML = q.options.map((opt, i) => `
+    <div class="option" id="opt-${i}"><span class="option-letter">${letters[i]}</span>${opt}</div>
+  `).join('');
+  document.getElementById('status-text').textContent = `Pregunta ${q.globalIndex}/${q.totalQuestions} activa`;
+}
+
+function renderTeams(connectedTeams) {
+  if (!teams.length) return;
+  document.getElementById('teams-list').innerHTML = teams.map(t => {
+    const isConn = connectedTeams.some(c => c.id === t.id);
+    return `<div class="team-row">
+      <div class="team-name"><div class="conn-dot ${isConn ? 'connected' : ''}"></div>${t.emoji || ''} ${t.name}</div>
+      <div style="font-size:12px;color:var(--muted)">${isConn ? 'Conectado' : 'Esperando'}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderTeamsWithAnswers(answers, correctIndex) {
+  if (!teams.length) return;
+  document.getElementById('teams-list').innerHTML = teams.map(t => {
+    const ans = answers[t.id];
+    let badge = `<span class="waiting-badge">No respondió</span>`;
+    if (ans !== undefined) {
+      badge = ans.answerIndex === correctIndex
+        ? `<span class="answered-badge">✓ Correcto</span>`
+        : `<span style="background:rgba(255,68,68,.15);color:var(--red);font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">✗ Incorrecto</span>`;
+    }
+    return `<div class="team-row"><div class="team-name">${t.emoji || ''} ${t.name}</div>${badge}</div>`;
+  }).join('');
+}
+
+function renderScores(scores) {
+  if (!teams.length) return;
+  const sorted = [...teams].sort((a, b) => (scores[b.id] || 0) - (scores[a.id] || 0));
+  document.getElementById('scores-list').innerHTML = sorted.map(t => `
+    <div class="team-row">
+      <div class="team-name">${t.emoji || ''} ${t.name}</div>
+      <div class="team-score">${(scores[t.id] || 0).toLocaleString()}</div>
+    </div>
+  `).join('');
+}
+
+function updateTimer(seconds) {
+  const t = document.getElementById('timer');
+  const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+  const s = String(Math.max(0, seconds % 60)).padStart(2, '0');
+  t.textContent = `${m}:${s}`;
+  t.classList.toggle('urgent', seconds <= 5 && seconds > 0);
+}
+
+function updateAnswerProgress(count, total) {
+  document.getElementById('answers-progress').textContent = `${count}/${total} equipos respondieron`;
+  document.getElementById('progress-fill').style.width = `${total > 0 ? (count/total)*100 : 0}%`;
+}
+</script>
+</body>
+</html>
