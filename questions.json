@@ -2,9 +2,9 @@
   "title": "Quiz Sales Ops",
   "subtitle": "Copa del Mundo 2026",
   "teams": [
-    { "id": 1, "name": "Equipo 1", "emoji": "🔵" },
-    { "id": 2, "name": "Equipo 2", "emoji": "🔴" },
-    { "id": 3, "name": "Equipo 3", "emoji": "🟡" }
+    { "id": 1, "name": "Brasil",         "emoji": "💛🌴" },
+    { "id": 2, "name": "Argentina",      "emoji": "💙🥩" },
+    { "id": 3, "name": "Chile+Colombia", "emoji": "❤️🦅☕" }
   ],
   "rounds": [
     {
