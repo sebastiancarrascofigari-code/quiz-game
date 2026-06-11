@@ -19,310 +19,312 @@
     --muted: #888;
   }
   body { background: var(--dark); color: var(--text); font-family: 'Segoe UI', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
-  header { text-align: center; padding: 20px 16px 12px; border-bottom: 1px solid var(--border); }
+
+  header { text-align: center; padding: 18px 16px 12px; border-bottom: 1px solid var(--border); }
   .badge { display: inline-block; background: var(--yellow); color: #000; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 6px; }
-  h1 { font-size: 22px; font-weight: 800; color: var(--yellow); letter-spacing: 2px; }
+  h1 { font-size: 20px; font-weight: 800; color: var(--yellow); letter-spacing: 1px; }
   .team-tag { font-size: 13px; color: var(--muted); margin-top: 4px; }
   .team-tag strong { color: var(--text); }
-  main { flex: 1; max-width: 600px; width: 100%; margin: 0 auto; padding: 24px 16px; }
+
+  main { flex: 1; max-width: 540px; width: 100%; margin: 0 auto; padding: 20px 16px; }
+
   .screen { display: none; }
   .screen.active { display: block; }
-  .waiting-icon { font-size: 64px; text-align: center; margin: 32px 0 16px; }
-  .waiting-title { text-align: center; font-size: 22px; font-weight: 700; }
-  .waiting-sub { text-align: center; color: var(--muted); margin-top: 8px; font-size: 14px; }
-  .rules-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-top: 24px; }
-  .rules-title { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+
+  /* ── WAITING ── */
+  .wait-icon { font-size: 64px; text-align: center; margin: 28px 0 14px; }
+  .wait-title { text-align: center; font-size: 22px; font-weight: 700; }
+  .wait-sub { text-align: center; color: var(--muted); margin-top: 8px; font-size: 14px; }
+  .info-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-top: 18px; }
+  .info-title { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
   .rule-item { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
   .rule-item:last-child { border-bottom: none; }
   .rule-icon { font-size: 18px; flex-shrink: 0; }
-  .rounds-list { margin-top: 8px; }
   .round-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
   .round-item:last-child { border-bottom: none; }
   .round-count { color: var(--muted); font-size: 13px; }
-  .round-intro-icon { font-size: 72px; text-align: center; margin: 32px 0 12px; }
-  .round-intro-label { text-align: center; font-size: 12px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
-  .round-intro-name { text-align: center; font-size: 28px; font-weight: 800; color: var(--yellow); margin-top: 4px; }
-  .q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+
+  .btn-ready { width: 100%; padding: 18px; border: none; border-radius: 12px; background: var(--yellow); color: #000; font-size: 18px; font-weight: 800; cursor: pointer; margin-top: 22px; letter-spacing: 1px; transition: opacity .2s, transform .1s; }
+  .btn-ready:active { transform: scale(0.98); }
+  .btn-ready:disabled { opacity: 0.5; cursor: default; transform: none; }
+  .ready-msg { display: none; text-align: center; margin-top: 14px; color: var(--green); font-weight: 700; font-size: 16px; }
+
+  /* ── ROUND INTRO ── */
+  .round-icon { font-size: 72px; text-align: center; margin: 36px 0 12px; }
+  .round-label { text-align: center; font-size: 12px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+  .round-name { text-align: center; font-size: 28px; font-weight: 800; color: var(--yellow); margin-top: 6px; }
+
+  /* ── QUESTION ── */
+  .q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
   .q-round { font-size: 12px; color: var(--muted); }
   .q-counter { font-size: 12px; color: var(--muted); }
-  .q-timer { font-size: 36px; font-weight: 900; color: var(--yellow); font-family: monospace; text-align: center; margin-bottom: 8px; }
-  .q-timer.urgent { color: var(--red); animation: shake .3s infinite; }
-  @keyframes shake { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
-  .timer-bar { width: 100%; height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 20px; overflow: hidden; }
+  .q-timer { font-size: 40px; font-weight: 900; color: var(--yellow); font-family: monospace; text-align: center; margin-bottom: 6px; line-height: 1; }
+  .q-timer.urgent { color: var(--red); animation: urgpulse .5s infinite; }
+  .q-timer.done { color: var(--muted); font-size: 28px; }
+  @keyframes urgpulse { 0%,100%{opacity:1} 50%{opacity:.6} }
+  .timer-bar { width: 100%; height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 18px; overflow: hidden; }
   .timer-fill { height: 100%; background: var(--yellow); border-radius: 3px; transition: width 1s linear; }
   .timer-fill.urgent { background: var(--red); }
-  .q-text { font-size: 20px; font-weight: 700; line-height: 1.4; margin-bottom: 20px; }
+  .q-text { font-size: 19px; font-weight: 700; line-height: 1.4; margin-bottom: 18px; }
   .options { display: flex; flex-direction: column; gap: 10px; }
-  .option-btn { width: 100%; padding: 16px 20px; border-radius: 10px; border: 2px solid var(--border); background: var(--card); color: var(--text); font-size: 16px; font-weight: 600; text-align: left; cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 12px; }
-  .option-btn:hover:not(:disabled) { border-color: var(--yellow); background: rgba(255,230,0,.06); }
-  .option-btn:active:not(:disabled) { transform: scale(0.98); }
-  .option-btn:disabled { cursor: default; }
-  .option-btn.selected { border-color: var(--blue); background: rgba(68,136,255,.12); }
-  .option-btn.correct { border-color: var(--green); background: rgba(0,200,83,.12); color: var(--green); }
-  .option-btn.wrong { border-color: var(--red); background: rgba(255,68,68,.08); opacity: 0.6; }
-  .option-btn.correct-other { border-color: var(--green); background: rgba(0,200,83,.08); }
-  .option-letter { font-size: 14px; font-weight: 800; width: 28px; height: 28px; border-radius: 6px; background: var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .option-btn.selected .option-letter { background: var(--blue); color: #fff; }
-  .option-btn.correct .option-letter { background: var(--green); color: #000; }
-  .option-btn.wrong .option-letter { background: rgba(255,68,68,.3); }
-  .option-btn.correct-other .option-letter { background: var(--green); color: #000; }
-  .result-icon { font-size: 80px; text-align: center; margin: 16px 0 8px; }
-  .result-title { text-align: center; font-size: 26px; font-weight: 800; }
-  .result-title.correct-text { color: var(--green); }
-  .result-title.wrong-text { color: var(--red); }
-  .result-sub { text-align: center; color: var(--muted); font-size: 14px; margin-top: 6px; }
-  .points-earned { text-align: center; font-size: 36px; font-weight: 900; color: var(--yellow); margin-top: 12px; }
-  .score-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-top: 20px; }
-  .scores-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
-  .scores-row:last-child { border-bottom: none; }
-  .scores-row.my-team { font-weight: 700; color: var(--yellow); }
-  .score-val { font-weight: 800; }
-  .waiting-next { text-align: center; color: var(--muted); font-size: 13px; margin-top: 16px; }
-  .dot-anim { animation: dots 1.5s infinite; }
-  @keyframes dots { 0%{opacity:0.2} 50%{opacity:1} 100%{opacity:0.2} }
-  .final-icon { font-size: 80px; text-align: center; margin: 20px 0 8px; }
-  .final-sub { text-align: center; font-size: 13px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
-  .final-title { text-align: center; font-size: 32px; font-weight: 900; color: var(--yellow); margin-top: 4px; }
-  .final-my-score { text-align: center; font-size: 18px; margin-top: 8px; color: var(--text); }
-  .podium { margin-top: 24px; }
-  .podium-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-radius: 10px; margin-bottom: 8px; }
-  .podium-row.first { background: rgba(255,230,0,.1); border: 1px solid var(--yellow); }
-  .podium-row.other { background: var(--card); border: 1px solid var(--border); }
-  .podium-pos { font-size: 22px; width: 36px; }
-  .podium-name { flex: 1; font-weight: 600; }
-  .podium-score { font-weight: 800; font-size: 18px; color: var(--yellow); }
+  .opt { width: 100%; padding: 15px 18px; border-radius: 10px; border: 2px solid var(--border); background: var(--card); color: var(--text); font-size: 16px; font-weight: 600; text-align: left; cursor: pointer; transition: all .12s; display: flex; align-items: center; gap: 12px; }
+  .opt:active { transform: scale(0.98); }
+  .opt:hover:not(:disabled) { border-color: var(--yellow); background: rgba(255,230,0,.07); }
+  .opt:disabled { cursor: default; transform: none; }
+  .opt.selected { border-color: var(--blue); background: rgba(68,136,255,.1); }
+  .opt.correct  { border-color: var(--green); background: rgba(0,200,83,.15); color: var(--green); font-weight: 700; }
+  .opt.wrong    { border-color: var(--red); background: rgba(255,68,68,.08); opacity: 0.7; }
+  .opt.correct-other { border-color: var(--green); background: rgba(0,200,83,.07); }
+  .opt-letter { font-size: 13px; font-weight: 800; width: 28px; height: 28px; border-radius: 6px; background: var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .opt.selected .opt-letter    { background: var(--blue); color: #fff; }
+  .opt.correct .opt-letter     { background: var(--green); color: #000; }
+  .opt.wrong .opt-letter       { background: rgba(255,68,68,.3); }
+  .opt.correct-other .opt-letter { background: var(--green); color: #000; }
+
+  /* ── FINAL ── */
+  .final-icon  { font-size: 80px; text-align: center; margin: 24px 0 8px; }
+  .final-label { text-align: center; font-size: 12px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+  .final-name  { text-align: center; font-size: 30px; font-weight: 900; color: var(--yellow); margin-top: 4px; }
+  .final-score { text-align: center; font-size: 16px; margin-top: 6px; color: var(--muted); }
+  .podium { margin-top: 22px; }
+  .pod-row { display: flex; align-items: center; padding: 12px 16px; border-radius: 10px; margin-bottom: 8px; gap: 10px; }
+  .pod-row.first { background: rgba(255,230,0,.1); border: 1px solid var(--yellow); }
+  .pod-row.other { background: var(--card); border: 1px solid var(--border); }
+  .pod-pos  { font-size: 22px; width: 36px; flex-shrink: 0; }
+  .pod-name { flex: 1; font-weight: 600; }
+  .pod-you  { font-size: 11px; color: var(--yellow); font-weight: 700; margin-left: 6px; }
+  .pod-pts  { font-weight: 800; font-size: 18px; color: var(--yellow); }
 </style>
 </head>
 <body>
+
 <header>
   <div class="badge" id="badge">🎮 QUIZ GAME</div>
   <h1 id="game-title">Cargando...</h1>
-  <p class="team-tag" id="team-tag">Tu equipo: <strong id="team-name-tag">...</strong></p>
+  <p class="team-tag">Tu equipo: <strong id="team-name-tag">...</strong></p>
 </header>
+
 <main>
+
+  <!-- WAITING -->
   <div class="screen active" id="screen-waiting">
-    <div class="waiting-icon" id="wait-icon">🏁</div>
-    <div class="waiting-title">Esperando al facilitador...</div>
-    <div class="waiting-sub">El juego comenzará pronto</div>
-    <div class="rules-box" id="rules-box">
-      <div class="rules-title">¿Cómo funciona?</div>
-      <div id="rules-items"></div>
+    <div class="wait-icon" id="wait-icon">🏁</div>
+    <div class="wait-title" id="wait-title">Esperando al facilitador...</div>
+    <div class="wait-sub" id="wait-sub">El juego comenzará pronto</div>
+    <div class="info-box" id="rules-box">
+      <div class="info-title">¿Cómo funciona?</div>
+      <div id="rules-list"></div>
     </div>
-    <div class="rules-box" style="margin-top:12px;">
-      <div class="rules-title">Las rondas</div>
-      <div class="rounds-list" id="rounds-display"></div>
+    <div class="info-box" id="rounds-box" style="margin-top:12px;">
+      <div class="info-title">Las rondas</div>
+      <div id="rounds-list"></div>
     </div>
+    <button class="btn-ready" id="btn-ready" onclick="confirmReady()">¡ESTAMOS LISTOS! →</button>
+    <div class="ready-msg" id="ready-msg">✓ Confirmado — esperando al facilitador</div>
   </div>
+
+  <!-- ROUND INTRO -->
   <div class="screen" id="screen-round">
-    <div class="round-intro-icon" id="round-icon">⚡</div>
-    <div class="round-intro-label">PRÓXIMA RONDA</div>
-    <div class="round-intro-name" id="round-name">Ronda 1</div>
+    <div class="round-icon" id="round-icon">⚡</div>
+    <div class="round-label">PRÓXIMA RONDA</div>
+    <div class="round-name" id="round-name">Ronda</div>
   </div>
+
+  <!-- QUESTION -->
   <div class="screen" id="screen-question">
     <div class="q-header">
-      <span class="q-round" id="q-round"></span>
-      <span class="q-counter" id="q-counter"></span>
+      <span class="q-round" id="q-round-label"></span>
+      <span class="q-counter" id="q-counter-label"></span>
     </div>
-    <div class="q-timer" id="q-timer">12</div>
+    <div class="q-timer" id="q-timer">8</div>
     <div class="timer-bar"><div class="timer-fill" id="timer-fill" style="width:100%"></div></div>
     <div class="q-text" id="q-text"></div>
     <div class="options" id="q-options"></div>
   </div>
-  <div class="screen" id="screen-result">
-    <div class="result-icon" id="result-icon"></div>
-    <div class="result-title" id="result-title"></div>
-    <div class="result-sub" id="result-sub"></div>
-    <div class="points-earned" id="points-earned"></div>
-    <div class="score-card">
-      <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Marcador</div>
-      <div id="result-scores"></div>
-    </div>
-    <div class="waiting-next"><span class="dot-anim">●</span> Siguiente en <span id="team-countdown" style="font-weight:800;color:var(--yellow);">3</span>s...</div>
-  </div>
+
+  <!-- FINAL -->
   <div class="screen" id="screen-final">
     <div class="final-icon" id="final-icon">🏆</div>
-    <div class="final-sub">RESULTADO FINAL</div>
-    <div class="final-title" id="final-winner"></div>
-    <div class="final-my-score" id="final-my-score"></div>
+    <div class="final-label">RESULTADO FINAL</div>
+    <div class="final-name" id="final-name"></div>
+    <div class="final-score" id="final-score"></div>
     <div class="podium" id="final-podium"></div>
   </div>
+
 </main>
+
 <script>
 const socket = io();
 const teamId = parseInt(window.location.pathname.split('/').pop());
-let config = null;
-let myScore = 0;
-let timerInterval = null;
+let isReady = false;
 let selectedAnswer = null;
+let timerInterval = null;
+let myScore = 0;
 
-fetch('/api/config').then(r => r.json()).then(c => {
-  config = c;
-  const team = c.teams.find(t => t.id === teamId);
-  document.getElementById('badge').textContent = '🎮 ' + c.title.toUpperCase();
-  document.getElementById('game-title').textContent = c.title;
-  document.title = c.title + (team ? ` — ${team.name}` : '');
+// Load config
+fetch('/api/config').then(r => r.json()).then(cfg => {
+  const team = cfg.teams.find(t => t.id === teamId);
+  document.getElementById('badge').textContent = '🎮 ' + cfg.title.toUpperCase();
+  document.getElementById('game-title').textContent = cfg.title;
+  document.title = cfg.title + (team ? ' — ' + team.name : '');
+
   if (team) {
     document.getElementById('wait-icon').textContent = team.emoji || '🏁';
-    document.getElementById('team-name-tag').textContent = `${team.emoji || ''} ${team.name}`;
+    document.getElementById('team-name-tag').textContent = (team.emoji || '') + ' ' + team.name;
   }
-  const rules = [
-    { icon: '🔄', text: `${c.totalRounds} rondas · ${c.totalQuestions} preguntas en total` },
+
+  document.getElementById('rules-list').innerHTML = [
+    { icon: '🔄', text: cfg.totalRounds + ' rondas · ' + cfg.totalQuestions + ' preguntas en total' },
     { icon: '👥', text: 'Solo <strong>una persona</strong> por equipo toca la pantalla — ¡decidan juntos!' },
-    { icon: '🎯', text: 'Puntuación: <strong>aciertos + velocidad</strong>' },
-  ];
-  document.getElementById('rules-items').innerHTML = rules.map(r => `
-    <div class="rule-item"><div class="rule-icon">${r.icon}</div><div>${r.text}</div></div>
-  `).join('');
-  document.getElementById('rounds-display').innerHTML = c.rounds.map(r => `
-    <div class="round-item">
-      <span>${r.emoji} ${r.name}</span>
-      <span class="round-count">${r.count} preguntas</span>
-    </div>
-  `).join('');
+    { icon: '🎯', text: '1 punto por respuesta correcta, 0 por incorrecta o sin respuesta' },
+    { icon: '⚡', text: '8 segundos por pregunta' },
+  ].map(r => '<div class="rule-item"><div class="rule-icon">' + r.icon + '</div><div>' + r.text + '</div></div>').join('');
+
+  document.getElementById('rounds-list').innerHTML = cfg.rounds.map(r =>
+    '<div class="round-item"><span>' + r.emoji + ' ' + r.name + '</span><span class="round-count">' + r.count + ' preguntas</span></div>'
+  ).join('');
 });
 
-socket.emit('team:join', { teamId });
+// Join
+socket.emit('team:join', { teamId: teamId });
 
-socket.on('team:state', (state) => {
-  myScore = state.scores?.[teamId] || 0;
+socket.on('team:state', function(state) {
+  myScore = (state.scores && state.scores[teamId]) || 0;
   if (state.status === 'finished') showScreen('screen-final');
 });
 
-socket.on('game:start', () => {
-  showScreen('screen-waiting');
-  document.querySelector('#screen-waiting .waiting-title').textContent = '¡El juego comenzó!';
-  document.querySelector('#screen-waiting .waiting-sub').textContent = 'Primera pregunta llegando...';
+socket.on('game:start', function() {
+  document.getElementById('wait-title').textContent = '¡El juego comenzó!';
+  document.getElementById('wait-sub').textContent = 'Primera pregunta llegando...';
+  document.getElementById('btn-ready').style.display = 'none';
+  document.getElementById('ready-msg').style.display = 'none';
   document.getElementById('rules-box').style.display = 'none';
+  document.getElementById('rounds-box').style.display = 'none';
 });
 
-socket.on('round:start', ({ roundName, roundEmoji }) => {
-  document.getElementById('round-icon').textContent = roundEmoji || '⚡';
-  document.getElementById('round-name').textContent = roundName;
+socket.on('round:start', function(data) {
+  document.getElementById('round-icon').textContent = data.roundEmoji || '⚡';
+  document.getElementById('round-name').textContent = data.roundName;
   showScreen('screen-round');
 });
 
-socket.on('question:show', (q) => {
+socket.on('question:show', function(q) {
   selectedAnswer = null;
-  showQuestion(q);
+  clearInterval(timerInterval);
+  renderQuestion(q);
   showScreen('screen-question');
-  clearInterval(timerInterval);
-  let timeLeft = q.timeLimit;
-  updateTimer(timeLeft, q.timeLimit);
-  timerInterval = setInterval(() => {
-    timeLeft--;
-    updateTimer(timeLeft, q.timeLimit);
-    if (timeLeft <= 0) { clearInterval(timerInterval); disableOptions(); }
-  }, 1000);
+  startTimer(q.timeLimit);
 });
 
-socket.on('question:reveal', ({ correctIndex, answers, questionScores, totalScores, teams, autoAdvanceIn }) => {
+socket.on('question:reveal', function(data) {
   clearInterval(timerInterval);
-  const myAnswer = answers[teamId];
-  const isCorrect = myAnswer !== undefined && myAnswer.answerIndex === correctIndex;
-  const pointsGained = questionScores?.[teamId] || 0;
-  myScore = totalScores?.[teamId] || 0;
-  const btns = document.querySelectorAll('#q-options .option-btn');
-  btns.forEach((btn, i) => {
-    btn.disabled = true;
+  var correctIndex = data.correctIndex;
+  var myAnswer = data.answers && data.answers[teamId];
+
+  // Highlight correct/wrong in-place — NO screen switch
+  var btns = document.querySelectorAll('#q-options .opt');
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].disabled = true;
+    btns[i].classList.remove('selected');
     if (i === correctIndex) {
-      btn.classList.add(myAnswer?.answerIndex === i ? 'correct' : 'correct-other');
-    } else if (myAnswer?.answerIndex === i) {
-      btn.classList.add('wrong');
+      btns[i].classList.add(myAnswer && myAnswer.answerIndex === i ? 'correct' : 'correct-other');
+    } else if (myAnswer && myAnswer.answerIndex === i) {
+      btns[i].classList.add('wrong');
     }
-  });
-  setTimeout(() => {
-    showResult(isCorrect, pointsGained, myAnswer, totalScores, teams || config?.teams || []);
-    showScreen('screen-result');
-    let secs = autoAdvanceIn || 3;
-    const cdEl = document.getElementById('team-countdown');
-    if (cdEl) {
-      cdEl.textContent = secs;
-      const cdInt = setInterval(() => {
-        secs--;
-        cdEl.textContent = Math.max(0, secs);
-        if (secs <= 0) clearInterval(cdInt);
-      }, 1000);
-    }
-  }, 1200);
+  }
+
+  var timer = document.getElementById('q-timer');
+  timer.textContent = (myAnswer && myAnswer.answerIndex === correctIndex) ? '✓' : '✗';
+  timer.className = 'q-timer done';
+  document.getElementById('timer-fill').style.width = '0%';
+  // Server will push question:show for next question in 2 seconds
 });
 
-socket.on('game:end', ({ rankings, scores }) => {
-  myScore = scores?.[teamId] || 0;
-  showFinal(rankings);
+socket.on('game:end', function(data) {
+  myScore = (data.scores && data.scores[teamId]) || 0;
+  renderFinal(data.rankings);
   showScreen('screen-final');
 });
 
-socket.on('game:reset', () => location.reload());
+socket.on('game:reset', function() { location.reload(); });
 
-function showQuestion(q) {
-  document.getElementById('q-round').textContent = `${q.roundEmoji} ${q.roundName}`;
-  document.getElementById('q-counter').textContent = `${q.questionIndex + 1}/${q.totalInRound}`;
-  document.getElementById('q-text').textContent = q.text;
-  const letters = ['A', 'B', 'C', 'D'];
-  document.getElementById('q-options').innerHTML = q.options.map((opt, i) => `
-    <button class="option-btn" id="opt-${i}" onclick="selectAnswer(${i}, ${q.timeLimit})">
-      <div class="option-letter">${letters[i]}</div>
-      <span>${opt}</span>
-    </button>
-  `).join('');
+function confirmReady() {
+  if (isReady) return;
+  isReady = true;
+  socket.emit('team:ready', { teamId: teamId });
+  var btn = document.getElementById('btn-ready');
+  btn.disabled = true;
+  btn.textContent = '✓ ¡Listos!';
+  document.getElementById('ready-msg').style.display = 'block';
+  document.getElementById('wait-title').textContent = '¡Listos! Esperando al facilitador...';
 }
 
-function selectAnswer(index, timeLimit) {
+function renderQuestion(q) {
+  document.getElementById('q-round-label').textContent = (q.roundEmoji || '') + ' ' + q.roundName;
+  document.getElementById('q-counter-label').textContent = (q.questionIndex + 1) + '/' + q.totalInRound;
+  document.getElementById('q-text').textContent = q.text;
+  var letters = ['A','B','C','D'];
+  document.getElementById('q-options').innerHTML = q.options.map(function(opt, i) {
+    return '<button class="opt" id="opt-' + i + '" onclick="selectAnswer(' + i + ')">' +
+      '<div class="opt-letter">' + letters[i] + '</div>' +
+      '<span>' + opt + '</span>' +
+      '</button>';
+  }).join('');
+}
+
+function selectAnswer(index) {
   if (selectedAnswer !== null) return;
   selectedAnswer = index;
-  document.getElementById(`opt-${index}`).classList.add('selected');
-  disableOptions();
-  const timeLeft = parseInt(document.getElementById('q-timer').textContent);
-  socket.emit('team:answer', { teamId, answerIndex: index, timeLeft: Math.max(0, timeLeft) });
+  document.getElementById('opt-' + index).classList.add('selected');
+  document.querySelectorAll('#q-options .opt').forEach(function(b) { b.disabled = true; });
+  var timeLeft = parseInt(document.getElementById('q-timer').textContent) || 0;
+  socket.emit('team:answer', { teamId: teamId, answerIndex: index, timeLeft: Math.max(0, timeLeft) });
 }
 
-function disableOptions() {
-  document.querySelectorAll('#q-options .option-btn').forEach(b => b.disabled = true);
+function startTimer(limit) {
+  var t = limit;
+  updateTimer(t, limit);
+  timerInterval = setInterval(function() {
+    t--;
+    updateTimer(t, limit);
+    if (t <= 0) {
+      clearInterval(timerInterval);
+      document.querySelectorAll('#q-options .opt').forEach(function(b) { b.disabled = true; });
+    }
+  }, 1000);
 }
 
-function updateTimer(seconds, total) {
-  const t = document.getElementById('q-timer');
-  t.textContent = Math.max(0, seconds);
-  t.classList.toggle('urgent', seconds <= 5 && seconds > 0);
-  const fill = document.getElementById('timer-fill');
-  fill.style.width = `${total > 0 ? (seconds / total) * 100 : 0}%`;
-  fill.classList.toggle('urgent', seconds <= 5);
+function updateTimer(secs, total) {
+  var el = document.getElementById('q-timer');
+  el.textContent = Math.max(0, secs);
+  el.className = 'q-timer' + (secs <= 3 && secs > 0 ? ' urgent' : '');
+  var fill = document.getElementById('timer-fill');
+  fill.style.width = (total > 0 ? (secs / total) * 100 : 0) + '%';
+  fill.className = 'timer-fill' + (secs <= 3 ? ' urgent' : '');
 }
 
-function showResult(isCorrect, points, myAnswer, totalScores, teams) {
-  document.getElementById('result-icon').textContent = isCorrect ? '✅' : (myAnswer === undefined ? '⏱️' : '❌');
-  const titleEl = document.getElementById('result-title');
-  titleEl.textContent = isCorrect ? '¡Correcto!' : (myAnswer === undefined ? 'Tiempo agotado' : 'Incorrecto');
-  titleEl.className = 'result-title ' + (isCorrect ? 'correct-text' : 'wrong-text');
-  document.getElementById('result-sub').textContent = isCorrect ? `+${points} puntos` : 'Sin puntos esta vez';
-  document.getElementById('points-earned').textContent = isCorrect ? `+${points}` : '';
-  const sorted = [...teams].sort((a, b) => (totalScores[b.id] || 0) - (totalScores[a.id] || 0));
-  document.getElementById('result-scores').innerHTML = sorted.map(t => `
-    <div class="scores-row ${t.id === teamId ? 'my-team' : ''}">
-      <span>${t.emoji || ''} ${t.name} ${t.id === teamId ? '← Tú' : ''}</span>
-      <span class="score-val">${(totalScores[t.id] || 0).toLocaleString()}</span>
-    </div>
-  `).join('');
-}
-
-function showFinal(rankings) {
-  const myRank = rankings.findIndex(t => t.id === teamId);
-  const winner = rankings[0];
-  const isWinner = winner.id === teamId;
-  document.getElementById('final-icon').textContent = isWinner ? '🏆' : (['🥈','🥉','4️⃣'][myRank - 1] || '🎖️');
-  document.getElementById('final-winner').textContent = isWinner ? `¡${winner.name} ganó!` : `Ganó: ${winner.emoji || ''} ${winner.name}`;
-  document.getElementById('final-my-score').textContent = `Tu puntaje: ${myScore.toLocaleString()} pts`;
-  document.getElementById('final-podium').innerHTML = rankings.map((t, i) => `
-    <div class="podium-row ${i === 0 ? 'first' : 'other'}">
-      <div class="podium-pos">${['🥇','🥈','🥉'][i] || (i+1)+'.'}</div>
-      <div class="podium-name">${t.emoji || ''} ${t.name} ${t.id === teamId ? '← Tú' : ''}</div>
-      <div class="podium-score">${(t.score || 0).toLocaleString()}</div>
-    </div>
-  `).join('');
+function renderFinal(rankings) {
+  var myRank = rankings.findIndex(function(t) { return t.id === teamId; });
+  var winner = rankings[0];
+  var isWinner = winner.id === teamId;
+  var medals = ['🥇','🥈','🥉'];
+  document.getElementById('final-icon').textContent = medals[myRank] || '🎖️';
+  document.getElementById('final-name').textContent = isWinner
+    ? '¡' + winner.name + ' ganó!'
+    : 'Ganó: ' + (winner.emoji || '') + ' ' + winner.name;
+  document.getElementById('final-score').textContent = 'Tu puntaje: ' + myScore + ' punto' + (myScore !== 1 ? 's' : '');
+  document.getElementById('final-podium').innerHTML = rankings.map(function(t, i) {
+    return '<div class="pod-row ' + (i === 0 ? 'first' : 'other') + '">' +
+      '<div class="pod-pos">' + (medals[i] || (i+1)+'. ') + '</div>' +
+      '<div class="pod-name">' + (t.emoji || '') + ' ' + t.name +
+        (t.id === teamId ? '<span class="pod-you">← TÚ</span>' : '') + '</div>' +
+      '<div class="pod-pts">' + (t.score || 0) + ' pts</div>' +
+      '</div>';
+  }).join('');
 }
 
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
   document.getElementById(id).classList.add('active');
 }
 </script>
