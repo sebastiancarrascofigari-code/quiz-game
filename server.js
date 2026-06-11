@@ -17,7 +17,6 @@ let gameState = {
   currentRound: 0,
   currentQuestion: 0,
   timer: null,
-  autoAdvanceTimer: null,
   timeLeft: 0,
   teams: {},
   answers: {},
@@ -33,6 +32,7 @@ function initTeams() {
 initTeams();
 
 app.use(express.static(__dirname));
+
 app.get('/', (req, res) => res.redirect('/team/1'));
 app.get('/host', (req, res) => res.sendFile(path.join(__dirname, 'host.html')));
 app.get('/team/:id', (req, res) => res.sendFile(path.join(__dirname, 'team.html')));
@@ -53,6 +53,7 @@ io.on('connection', (socket) => {
   socket.on('host:join', () => {
     socket.join('host');
     socket.emit('host:state', buildHostState());
+    console.log('Host connected');
   });
 
   socket.on('team:join', ({ teamId }) => {
@@ -64,9 +65,12 @@ io.on('connection', (socket) => {
     gameState.teams[teamId].socketId = socket.id;
     socket.emit('team:state', buildTeamState(teamId));
     io.to('host').emit('host:team-connected', {
-      teamId, name: team.name, emoji: team.emoji,
+      teamId,
+      name: team.name,
+      emoji: team.emoji,
       connectedTeams: getConnectedTeams(),
     });
+    console.log(`Team ${teamId} (${team.name}) connected`);
   });
 
   socket.on('host:start', () => {
@@ -108,6 +112,7 @@ io.on('connection', (socket) => {
     resetGame();
     io.emit('game:reset');
     io.to('host').emit('host:state', buildHostState());
+    console.log('Game reset');
   });
 
   socket.on('disconnect', () => {
@@ -124,7 +129,7 @@ io.on('connection', (socket) => {
 function sendQuestion() {
   const round = gameData.rounds[gameState.currentRound];
   const question = round.questions[gameState.currentQuestion];
-  const timeLimit = round.timePerQuestion || 12;
+  const timeLimit = round.timePerQuestion || 8;
   const totalQ = getTotalQuestionIndex();
   const totalAll = gameData.rounds.reduce((s, r) => s + r.questions.length, 0);
 
@@ -156,7 +161,7 @@ function revealAnswer() {
 
   const round = gameData.rounds[gameState.currentRound];
   const question = round.questions[gameState.currentQuestion];
-  const timeLimit = round.timePerQuestion || 12;
+  const timeLimit = round.timePerQuestion || 8;
 
   const questionScores = {};
   gameData.teams.forEach(t => {
@@ -177,12 +182,13 @@ function revealAnswer() {
     questionScores,
     totalScores: { ...gameState.scores },
     teams: gameData.teams,
-    autoAdvanceIn: 3,
   };
 
-  io.emit('question:reveal', revealPayload);
-  io.to('host').emit('host:reveal', revealPayload);
-  gameState.autoAdvanceTimer = setTimeout(() => advanceGame(), 3000);
+  io.emit('question:reveal', { ...revealPayload, autoAdvanceIn: 1 });
+  io.to('host').emit('host:reveal', { ...revealPayload, autoAdvanceIn: 1 });
+
+  // Auto-advance after 1 second
+  gameState.autoAdvanceTimer = setTimeout(() => advanceGame(), 1000);
 }
 
 function advanceGame() {
@@ -192,10 +198,12 @@ function advanceGame() {
   if (gameState.currentQuestion >= round.questions.length) {
     gameState.currentRound++;
     gameState.currentQuestion = 0;
+
     if (gameState.currentRound >= gameData.rounds.length) {
       endGame();
       return;
     }
+
     io.emit('round:start', {
       roundIndex: gameState.currentRound,
       roundName: gameData.rounds[gameState.currentRound].name,
@@ -225,12 +233,16 @@ function resetGame() {
   gameState.currentQuestion = 0;
   gameState.answers = {};
   Object.keys(gameState.scores).forEach(id => gameState.scores[id] = 0);
-  Object.keys(gameState.teams).forEach(id => { gameState.teams[id].connected = false; });
+  Object.keys(gameState.teams).forEach(id => {
+    gameState.teams[id].connected = false;
+  });
 }
 
 function getTotalQuestionIndex() {
   let total = 0;
-  for (let i = 0; i < gameState.currentRound; i++) total += gameData.rounds[i].questions.length;
+  for (let i = 0; i < gameState.currentRound; i++) {
+    total += gameData.rounds[i].questions.length;
+  }
   return total + gameState.currentQuestion + 1;
 }
 
@@ -243,7 +255,10 @@ function getConnectedTeams() {
 function buildHostState() {
   return {
     status: gameState.status,
-    config: { title: gameData.title, rounds: gameData.rounds.map(r => ({ name: r.name, emoji: r.emoji, count: r.questions.length })) },
+    config: {
+      title: gameData.title,
+      rounds: gameData.rounds.map(r => ({ name: r.name, emoji: r.emoji, count: r.questions.length })),
+    },
     connectedTeams: getConnectedTeams(),
     scores: gameState.scores,
   };
@@ -262,4 +277,8 @@ function buildTeamState(teamId) {
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`🎮 Quiz Game corriendo en http://localhost:${PORT}`);
+  console.log(`   Host:   http://localhost:${PORT}/host`);
+  console.log(`   Team 1: http://localhost:${PORT}/team/1`);
+  console.log(`   Team 2: http://localhost:${PORT}/team/2`);
+  console.log(`   Team 3: http://localhost:${PORT}/team/3`);
 });
