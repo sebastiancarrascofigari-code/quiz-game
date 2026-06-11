@@ -1,6 +1,6 @@
 {
-  "title": "Quiz Sales Ops",
-  "subtitle": "Copa del Mundo 2026",
+  "title": "TRIVIA MUNDIALISTA 2026",
+  "subtitle": "El Desafío Definitivo",
   "teams": [
     { "id": 1, "name": "Brasil",         "emoji": "💛🌴" },
     { "id": 2, "name": "Argentina",      "emoji": "💙🥩" },
@@ -8,98 +8,554 @@
   ],
   "rounds": [
     {
-      "name": "Ronda 1 — General",
-      "emoji": "🏆",
-      "timePerQuestion": 12,
-      "questions": [
-        {
-          "text": "¿En qué año se fundó MercadoLibre?",
-          "options": ["1997", "1999", "2001", "2003"],
-          "correct": 1
-        },
-        {
-          "text": "¿En qué país nació MercadoLibre?",
-          "options": ["Brasil", "México", "Argentina", "Chile"],
-          "correct": 2
-        },
-        {
-          "text": "¿Cuál es el nombre del servicio de pagos de MercadoLibre?",
-          "options": ["MeLi Pay", "Mercado Pago", "ML Wallet", "PagoLibre"],
-          "correct": 1
-        },
-        {
-          "text": "¿Qué significa la sigla NMV?",
-          "options": ["Net Margin Value", "Net Merchandise Volume", "New Market Value", "Net Monthly Volume"],
-          "correct": 1
-        },
-        {
-          "text": "¿En cuántos países opera MercadoLibre?",
-          "options": ["10", "14", "18", "22"],
-          "correct": 2
-        }
-      ]
-    },
-    {
-      "name": "Ronda 2 — Productos",
-      "emoji": "📦",
-      "timePerQuestion": 12,
-      "questions": [
-        {
-          "text": "¿Cómo se llama el servicio de logística de MercadoLibre?",
-          "options": ["MeLi Envíos", "Mercado Envíos", "ML Logistics", "EnvíoLibre"],
-          "correct": 1
-        },
-        {
-          "text": "¿Qué es Mercado Crédito?",
-          "options": ["Una tarjeta de crédito", "Un servicio de préstamos y financiamiento", "Un programa de puntos", "Un banco digital"],
-          "correct": 1
-        },
-        {
-          "text": "¿Qué es el nivel FULL en Mercado Envíos?",
-          "options": ["Envío express en 2 horas", "Stock almacenado en bodegas de MeLi con despacho rápido", "Envío gratis para compradores", "Logística internacional"],
-          "correct": 1
-        },
-        {
-          "text": "¿Qué es una 'publicación de catálogo'?",
-          "options": ["Una publicación destacada pagada", "Una publicación vinculada a la ficha oficial del producto en MeLi", "Una publicación con video", "Una publicación solo para grandes vendedores"],
-          "correct": 1
-        },
-        {
-          "text": "¿Qué significa CVR en e-commerce?",
-          "options": ["Cost vs Revenue", "Conversion Rate", "Customer Value Rate", "Click Volume Ratio"],
-          "correct": 1
-        }
-      ]
-    },
-    {
-      "name": "Ronda 3 — Lógica",
+      "name": "Ronda 1 — Para soltar la mano",
       "emoji": "🧠",
       "timePerQuestion": 12,
       "questions": [
         {
-          "text": "Si tienes 1000 visitas y 50 ventas, ¿cuál es tu CVR?",
-          "options": ["0.5%", "5%", "50%", "0.05%"],
+          "text": "¿Cuántos países soberanos hay aproximadamente en el continente americano?",
+          "options": ["12", "25", "35", "50"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuántas letras tiene el abecedario español (según la RAE)?",
+          "options": ["26", "27", "28", "29"],
           "correct": 1
         },
         {
-          "text": "¿Qué métrica mide el valor total de ventas procesadas en una plataforma?",
-          "options": ["GMV", "ROI", "CAC", "LTV"],
-          "correct": 0
-        },
-        {
-          "text": "Si el ticket promedio sube 10% y el volumen baja 5%, ¿el NMV sube o baja?",
-          "options": ["Sube ~4.5%", "Baja ~4.5%", "Se mantiene igual", "No se puede saber"],
-          "correct": 0
-        },
-        {
-          "text": "¿Qué es un test A/B?",
-          "options": ["Un tipo de encuesta", "Un experimento donde se comparan dos versiones para ver cuál funciona mejor", "Un reporte de ventas mensual", "Un método de segmentación de clientes"],
+          "text": "¿Cuántos huesos tiene el cuerpo humano de un adulto?",
+          "options": ["156", "206", "215", "305"],
           "correct": 1
         },
         {
-          "text": "¿Cuál de estas NO es una métrica de activación de usuarios?",
-          "options": ["DAU", "WAU", "MAU", "ROI"],
+          "text": "¿En qué año llegó el hombre a la Luna por primera vez?",
+          "options": ["1965", "1969", "1971", "1975"],
+          "correct": 1
+        },
+        {
+          "text": "¿Hace cuántos años se creó Mercado Libre (fundada en 1999)?",
+          "options": ["20 años", "25 años", "30 años", "35 años"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "name": "Ronda 2 — Básicos del fútbol y del mundial",
+      "emoji": "⚽",
+      "timePerQuestion": 12,
+      "questions": [
+        {
+          "text": "¿Cuántos jugadores por equipo deben estar en cancha al inicio de un partido oficial?",
+          "options": ["10", "11", "12", "13"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cuántos árbitros componen el equipo de campo principal (sin contar el VAR)?",
+          "options": ["2", "3", "4", "5"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál es la duración reglamentaria de un partido de fútbol (sin tiempo añadido)?",
+          "options": ["80 minutos", "90 minutos", "100 minutos", "45 minutos"],
+          "correct": 1
+        },
+        {
+          "text": "Según la FIFA, ¿cuál es la longitud permitida para un campo en partidos internacionales?",
+          "options": ["80-100 metros", "90-110 metros", "100-110 metros", "110-120 metros"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál es la altura reglamentaria de un arco de fútbol profesional?",
+          "options": ["2.00 metros", "2.44 metros", "2.50 metros", "3.00 metros"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cuál es el ancho reglamentario de un arco de fútbol entre los postes?",
+          "options": ["6.00 metros", "7.32 metros", "8.10 metros", "7.50 metros"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cuántos cambios están permitidos actualmente por equipo en un partido oficial (tiempo regular)?",
+          "options": ["3", "4", "5", "6"],
+          "correct": 2
+        },
+        {
+          "text": "¿Qué sucede si un jugador recibe dos tarjetas amarillas en un mismo partido?",
+          "options": ["Se le advierte por última vez", "Se le suspende 10 minutos", "Es expulsado con tarjeta roja", "No pasa nada si es el capitán"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál es el estadio con mayor capacidad de público actualmente en el mundo?",
+          "options": ["Estadio Azteca", "Wembley", "Rungrado Primero de Mayo", "Camp Nou"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuántos jugadores podrá inscribir cada selección para el Mundial 2026?",
+          "options": ["23", "24", "26", "30"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál es el número máximo de personas permitidas en el banco de suplentes (incluyendo cuerpo técnico)?",
+          "options": ["15", "20", "23", "26"],
           "correct": 3
+        },
+        {
+          "text": "¿Cuántos países participaban en los mundiales antes del 2026?",
+          "options": ["32", "36", "44", "48"],
+          "correct": 0
+        },
+        {
+          "text": "¿En qué año se implementó oficialmente el VAR en una Copa del Mundo?",
+          "options": ["Brasil 2014", "Rusia 2018", "Qatar 2022", "Sudáfrica 2010"],
+          "correct": 1
+        },
+        {
+          "text": "Si hay empate tras los 90 minutos, ¿qué se juega primero en eliminación directa?",
+          "options": ["Penales directos", "Gol de oro", "Tiempo suplementario (dos tiempos de 15 min)", "Se repite el partido al día siguiente"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál es la presión de aire recomendada para un balón oficial de la FIFA?",
+          "options": ["0.1 a 0.5 atm", "0.6 a 1.1 atm", "1.2 a 1.5 atm", "2.0 atm"],
+          "correct": 1
+        },
+        {
+          "text": "¿De qué material principal suelen ser los balones modernos de alta competencia?",
+          "options": ["Cuero auténtico", "Plástico rígido", "Materiales sintéticos (poliuretano)", "Goma vulcanizada"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál debe ser la circunferencia de un balón de fútbol tamaño 5?",
+          "options": ["60-65 cm", "68-70 cm", "75-80 cm", "50-55 cm"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cuántos partidos totales deberá jugar un equipo para ser campeón en el formato 2026?",
+          "options": ["7", "8", "9", "10"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cuántas rondas de eliminación directa habrá en el Mundial 2026?",
+          "options": ["3 (Cuartos en adelante)", "4 (Octavos en adelante)", "5 (Dieciseisavos en adelante)", "6"],
+          "correct": 2
+        },
+        {
+          "text": "¿A qué distancia del arco se encuentra el punto penal?",
+          "options": ["9 metros", "10 metros", "11 metros", "12 metros"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál es el radio del círculo central de la cancha?",
+          "options": ["7 metros", "9.15 metros", "10.5 metros", "11 metros"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué indica el color de la tarjeta que el árbitro muestra para una expulsión directa?",
+          "options": ["Azul", "Amarillo", "Rojo", "Verde"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuánto tiempo dura el descanso entre el primer y segundo tiempo?",
+          "options": ["10 minutos", "15 minutos", "20 minutos", "5 minutos"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué parte del cuerpo no puede tocar el balón un jugador de campo (excepto saques de banda)?",
+          "options": ["Cabeza", "Pecho", "Manos y brazos", "Rodillas"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál es la función del cuarto árbitro?",
+          "options": ["Controlar el VAR únicamente", "Ayudar con los cambios y controlar el tiempo", "Correr por las bandas con un banderín", "Solo mirar el partido"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cómo se reanuda el juego si el balón sale por la línea de meta tocado por un defensa?",
+          "options": ["Saque de meta", "Saque de banda", "Tiro de esquina", "Tiro libre indirecto"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál es la distancia mínima entre el balón y la barrera en un tiro libre?",
+          "options": ["5 metros", "7.5 metros", "9.15 metros", "11 metros"],
+          "correct": 2
+        },
+        {
+          "text": "¿Qué sucede si el balón estalla durante un partido?",
+          "options": ["Se sigue jugando con los restos", "El árbitro detiene el juego y se reanuda con balón a tierra", "Se anula el partido", "Se da un gol al equipo que atacaba"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cuál es el peso reglamentario de un balón al inicio del partido?",
+          "options": ["300-350 gramos", "410-450 gramos", "500-600 gramos", "200-250 gramos"],
+          "correct": 1
+        },
+        {
+          "text": "¿Quién puede entrar al campo sin permiso del árbitro en una emergencia médica?",
+          "options": ["El entrenador", "El médico del equipo", "Nadie, siempre requiere autorización", "El capitán"],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "name": "Ronda 3 — Jugadores clave del mundial",
+      "emoji": "🌟",
+      "timePerQuestion": 12,
+      "questions": [
+        {
+          "text": "¿Quién tiene el récord de más Balones de Oro ganados en la historia?",
+          "options": ["Cristiano Ronaldo", "Lionel Messi", "Johan Cruyff", "Pelé"],
+          "correct": 1
+        },
+        {
+          "text": "¿Quién es el máximo goleador histórico de todas las selecciones nacionales masculinas?",
+          "options": ["Ali Daei", "Lionel Messi", "Cristiano Ronaldo", "Pelé"],
+          "correct": 2
+        },
+        {
+          "text": "¿Qué jugador ha disputado más minutos totales en la historia de los mundiales?",
+          "options": ["Lothar Matthäus", "Paolo Maldini", "Lionel Messi", "Miroslav Klose"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál de estos jugadores ha participado en 5 ediciones diferentes de la Copa del Mundo?",
+          "options": ["Andrés Iniesta", "Cristiano Ronaldo", "Zinedine Zidane", "Neymar Jr."],
+          "correct": 1
+        },
+        {
+          "text": "¿Quién ostenta el récord de ser el jugador más joven en debutar y anotar en una final de Mundial?",
+          "options": ["Kylian Mbappé", "Pelé", "Gavi", "Lamine Yamal"],
+          "correct": 1
+        },
+        {
+          "text": "¿Quién fue el arquero con el récord de más partidos con la valla invicta en mundiales (compartido)?",
+          "options": ["Iker Casillas y Peter Shilton", "Lev Yashin y Dino Zoff", "Oliver Kahn y Gianluigi Buffon", "Fabien Barthez y Peter Shilton"],
+          "correct": 3
+        },
+        {
+          "text": "¿Quién es el jugador más veterano en haber jugado un partido en un Mundial?",
+          "options": ["Dino Zoff", "Essam El-Hadary", "Faryd Mondragón", "Roger Milla"],
+          "correct": 1
+        },
+        {
+          "text": "¿Quién es el máximo goleador en una sola edición de un Mundial?",
+          "options": ["Just Fontaine", "Gerd Müller", "Ronaldo Nazário", "Sandor Kocsis"],
+          "correct": 0
+        },
+        {
+          "text": "¿Qué jugador ganó el premio al Mejor Jugador Joven (Revelación) en el Mundial 2022?",
+          "options": ["Julián Álvarez", "Jude Bellingham", "Enzo Fernández", "Gavi"],
+          "correct": 2
+        },
+        {
+          "text": "¿Quién es el máximo goleador histórico de los mundiales (fase final)?",
+          "options": ["Ronaldo Nazário", "Lionel Messi", "Miroslav Klose", "Pelé"],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "name": "Ronda 4 — Historia de las selecciones",
+      "emoji": "🏆",
+      "timePerQuestion": 12,
+      "questions": [
+        {
+          "text": "¿Cuál es la selección nacional más antigua del mundo (fundada en 1863)?",
+          "options": ["Escocia", "Inglaterra", "Uruguay", "Francia"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué selección tiene el récord de más títulos mundiales ganados?",
+          "options": ["Alemania", "Italia", "Brasil", "Argentina"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál es la única selección que ha participado en todas las ediciones de la Copa del Mundo?",
+          "options": ["Alemania", "Brasil", "Italia", "Argentina"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué selección africana fue la primera en llegar a una semifinal de un Mundial?",
+          "options": ["Camerún", "Senegal", "Ghana", "Marruecos"],
+          "correct": 3
+        },
+        {
+          "text": "¿Qué país debuta por primera vez en un mundial en 2026 (clasificado automáticamente como host)?",
+          "options": ["México", "Estados Unidos", "Canadá (ya debutó)", "Ninguno de los hosts es debutante"],
+          "correct": 3
+        },
+        {
+          "text": "¿Qué selección ganó dos mundiales de forma consecutiva (1934 y 1938)?",
+          "options": ["Brasil", "Italia", "Uruguay", "Alemania"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cuál es la selección que más finales de mundiales ha perdido?",
+          "options": ["Argentina", "Países Bajos", "Alemania", "Francia"],
+          "correct": 2
+        },
+        {
+          "text": "¿Qué selección ostenta el récord de la mayor goleada en la historia de los mundiales (10-1)?",
+          "options": ["Hungría (a El Salvador)", "Alemania (a Brasil)", "Yugoslavia (a Zaire)", "España (a Costa Rica)"],
+          "correct": 0
+        },
+        {
+          "text": "¿Qué selección sudamericana fue la primera en ganar un Mundial fuera de su continente?",
+          "options": ["Uruguay", "Argentina", "Brasil", "Chile"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál es la selección con la plantilla más cara del mercado actualmente (valor estimado)?",
+          "options": ["Francia", "Inglaterra", "Brasil", "España"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué selección europea fue la última en ganar su primer Mundial (en 2010)?",
+          "options": ["Francia", "España", "Alemania", "Inglaterra"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué selección ha ganado más Copas América?",
+          "options": ["Brasil", "Uruguay", "Argentina", "Chile"],
+          "correct": 2
+        },
+        {
+          "text": "¿Qué selección asiática tuvo el mejor desempeño en un mundial (4to puesto)?",
+          "options": ["Japón", "Arabia Saudita", "Corea del Sur", "Australia"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál es la selección con mayor número de jugadores nacionalizados en el último mundial?",
+          "options": ["Marruecos", "Francia", "Qatar", "Suiza"],
+          "correct": 0
+        },
+        {
+          "text": "¿Qué selección oceánica se cambió a la confederación asiática para ser más competitiva?",
+          "options": ["Nueva Zelanda", "Australia", "Fiyi", "Tahití"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "name": "Ronda 5A — Historia de mundiales",
+      "emoji": "📖",
+      "timePerQuestion": 12,
+      "questions": [
+        {
+          "text": "¿En qué país se celebró el primer mundial de la historia (1930)?",
+          "options": ["Argentina", "Italia", "Uruguay", "Brasil"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál fue el resultado de la final de Qatar 2022 en tiempo regular + prórroga?",
+          "options": ["2-2", "3-3", "4-2", "1-1"],
+          "correct": 1
+        },
+        {
+          "text": "¿En qué continente nunca se ha organizado un mundial de fútbol masculino?",
+          "options": ["África", "Asia", "Oceanía", "América del Norte"],
+          "correct": 2
+        },
+        {
+          "text": "¿Quiénes fueron los dos finalistas del Mundial Sudáfrica 2010?",
+          "options": ["España y Alemania", "España y Países Bajos", "Países Bajos y Uruguay", "Alemania y Argentina"],
+          "correct": 1
+        },
+        {
+          "text": "¿Quién fue el goleador (Bota de Oro) del Mundial Alemania 2006?",
+          "options": ["Miroslav Klose", "Ronaldo", "Thierry Henry", "Zinedine Zidane"],
+          "correct": 0
+        },
+        {
+          "text": "¿Quién fue elegido como el Mejor Jugador (Balón de Oro) del Mundial Brasil 2014?",
+          "options": ["Thomas Müller", "Lionel Messi", "James Rodríguez", "Mario Götze"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué país ganó el mundial siendo local en 1998?",
+          "options": ["Brasil", "Italia", "Francia", "Alemania"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál fue el marcador del famoso 'Maracanazo' en 1950?",
+          "options": ["Brasil 1-2 Uruguay", "Brasil 0-1 Uruguay", "Brasil 1-1 Uruguay", "Brasil 0-2 Uruguay"],
+          "correct": 0
+        },
+        {
+          "text": "¿En qué mundial se utilizó por primera vez una mascota oficial?",
+          "options": ["Inglaterra 1966", "México 1970", "Alemania 1974", "Argentina 1978"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué selección ganó el mundial de Suecia 1958?",
+          "options": ["Suecia", "Brasil", "Francia", "Alemania"],
+          "correct": 1
+        },
+        {
+          "text": "¿Quién anotó el 'Gol del Siglo' contra Inglaterra en 1986?",
+          "options": ["Pelé", "Diego Maradona", "Gary Lineker", "Mario Kempes"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cuál fue el primer mundial en tener 32 selecciones participantes?",
+          "options": ["Estados Unidos 1994", "Francia 1998", "Corea-Japón 2002", "Alemania 2006"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué país organizó el mundial de 1982?",
+          "options": ["México", "España", "Italia", "Argentina"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué jugador recibió el Balón de Oro en el mundial de 1998 a pesar de perder la final?",
+          "options": ["Zinedine Zidane", "Ronaldo Nazário", "Davor Šuker", "Rivaldo"],
+          "correct": 1
+        },
+        {
+          "text": "¿En qué años se suspendieron los mundiales debido a la Segunda Guerra Mundial?",
+          "options": ["1938 y 1942", "1942 y 1946", "1946 y 1950", "1934 y 1938"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cuál es el nombre del trofeo actual de la Copa del Mundo (desde 1974)?",
+          "options": ["Trofeo Jules Rimet", "Trofeo Copa del Mundo de la FIFA", "Trofeo Victoria", "Trofeo de Oro"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué selección europea ganó el mundial de 1966?",
+          "options": ["Alemania", "Inglaterra", "Portugal", "Unión Soviética"],
+          "correct": 1
+        },
+        {
+          "text": "¿Quién fue el arquero héroe de Argentina en los penales de la final 2022?",
+          "options": ["Franco Armani", "Emiliano 'Dibu' Martínez", "Sergio Romero", "Gerónimo Rulli"],
+          "correct": 1
+        },
+        {
+          "text": "¿En qué ciudad se jugó la final del mundial de Estados Unidos 1994?",
+          "options": ["Nueva York", "Pasadena (Los Ángeles)", "Chicago", "Miami"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué país africano organizó el primer mundial en su continente?",
+          "options": ["Egipto", "Nigeria", "Sudáfrica", "Marruecos"],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "name": "Ronda 5B — Mundial 2026",
+      "emoji": "🌎",
+      "timePerQuestion": 12,
+      "questions": [
+        {
+          "text": "¿Cuáles son los tres países sedes del Mundial 2026?",
+          "options": ["USA, Canadá y México", "USA, México y Panamá", "Brasil, Argentina y Uruguay", "USA, Canadá y Groenlandia"],
+          "correct": 0
+        },
+        {
+          "text": "¿En qué estadio se jugará el partido inaugural del Mundial 2026?",
+          "options": ["SoFi Stadium", "Estadio Azteca", "MetLife Stadium", "BMO Field"],
+          "correct": 1
+        },
+        {
+          "text": "¿En qué estadio se llevará a cabo la gran final del Mundial 2026?",
+          "options": ["Estadio Azteca", "AT&T Stadium", "MetLife Stadium (Nueva Jersey)", "Hard Rock Stadium"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuántos equipos participarán en total en esta edición?",
+          "options": ["32", "40", "48", "64"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cómo estarán distribuidos los equipos en la fase de grupos?",
+          "options": ["8 grupos de 4", "16 grupos de 3", "12 grupos de 4", "10 grupos de 5"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuántos mejores terceros lugares avanzarán a la siguiente ronda?",
+          "options": ["4", "6", "8", "12"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál es la fecha programada para la gran final del Mundial 2026?",
+          "options": ["12 de junio", "4 de julio", "19 de julio", "15 de agosto"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuántas ciudades anfitrionas tendrá Estados Unidos en este mundial?",
+          "options": ["8", "10", "11", "13"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuáles son las dos sedes canadienses para el mundial?",
+          "options": ["Toronto y Montreal", "Toronto y Vancouver", "Vancouver y Ottawa", "Calgary y Quebec"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué récord romperá el Estadio Azteca en 2026?",
+          "options": ["El de mayor capacidad", "El de más finales jugadas", "El de ser el primero en albergar 3 mundiales distintos", "El de más goles anotados"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál es la canción oficial del Mundial 2026?",
+          "options": ["Waka Waka", "DNA", "Hayya Hayya", "Dai Dai"],
+          "correct": 3
+        },
+        {
+          "text": "¿Quién o quiénes interpretan la canción oficial del Mundial 2026?",
+          "options": ["Shakira y Burna Boy", "Pitbull y Jennifer Lopez", "J Balvin y Maluma", "David Guetta y Dua Lipa"],
+          "correct": 0
+        },
+        {
+          "text": "¿Cuál es el total de partidos que se jugarán en el Mundial 2026?",
+          "options": ["64", "80", "104", "120"],
+          "correct": 2
+        },
+        {
+          "text": "¿En qué mes iniciará el torneo?",
+          "options": ["Mayo", "Junio", "Julio", "Noviembre"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cuántas plazas directas tiene la CONMEBOL para este mundial?",
+          "options": ["4", "5", "6", "7"],
+          "correct": 2
+        },
+        {
+          "text": "¿Qué ciudad de México tendrá juegos además de CDMX y Guadalajara?",
+          "options": ["Puebla", "Monterrey", "Querétaro", "Toluca"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cuál es el formato de eliminación directa tras la fase de grupos?",
+          "options": ["Octavos de final", "Dieciseisavos de final", "Cuartos de final", "Quinta fase"],
+          "correct": 1
+        },
+        {
+          "text": "¿En qué país se jugarán todos los partidos a partir de los cuartos de final?",
+          "options": ["México", "Canadá", "Estados Unidos", "Se repartirán entre los tres"],
+          "correct": 2
+        },
+        {
+          "text": "¿Cuál es el lema o marca oficial presentada por la FIFA para 2026?",
+          "options": ["United as One", "We Are 26", "Soccer is Back", "North America 2026"],
+          "correct": 1
+        },
+        {
+          "text": "¿Qué confederación tendrá un aumento masivo de cupos (de 4 a 8 directos)?",
+          "options": ["UEFA", "Asia (AFC)", "CONCACAF", "Oceanía"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cuántos partidos recibirá México en total durante el torneo?",
+          "options": ["10", "13", "15", "20"],
+          "correct": 1
+        },
+        {
+          "text": "¿Cuál es el objetivo principal del nuevo formato de 48 equipos?",
+          "options": ["Que el mundial dure 3 meses", "Mayor inclusión de selecciones de todos los continentes", "Eliminar los empates", "Que solo jueguen países ricos"],
+          "correct": 1
         }
       ]
     }
