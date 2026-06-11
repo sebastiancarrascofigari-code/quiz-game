@@ -19,20 +19,14 @@
     --muted: #888;
   }
   body { background: var(--dark); color: var(--text); font-family: 'Segoe UI', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
-
   header { text-align: center; padding: 20px 16px 12px; border-bottom: 1px solid var(--border); }
   .badge { display: inline-block; background: var(--yellow); color: #000; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 6px; }
   h1 { font-size: 22px; font-weight: 800; color: var(--yellow); letter-spacing: 2px; }
   .team-tag { font-size: 13px; color: var(--muted); margin-top: 4px; }
   .team-tag strong { color: var(--text); }
-
   main { flex: 1; max-width: 600px; width: 100%; margin: 0 auto; padding: 24px 16px; }
-
-  /* ── Screens ── */
   .screen { display: none; }
   .screen.active { display: block; }
-
-  /* Waiting */
   .waiting-icon { font-size: 64px; text-align: center; margin: 32px 0 16px; }
   .waiting-title { text-align: center; font-size: 22px; font-weight: 700; }
   .waiting-sub { text-align: center; color: var(--muted); margin-top: 8px; font-size: 14px; }
@@ -45,13 +39,9 @@
   .round-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
   .round-item:last-child { border-bottom: none; }
   .round-count { color: var(--muted); font-size: 13px; }
-
-  /* Round intro */
   .round-intro-icon { font-size: 72px; text-align: center; margin: 32px 0 12px; }
   .round-intro-label { text-align: center; font-size: 12px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
   .round-intro-name { text-align: center; font-size: 28px; font-weight: 800; color: var(--yellow); margin-top: 4px; }
-
-  /* Question */
   .q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
   .q-round { font-size: 12px; color: var(--muted); }
   .q-counter { font-size: 12px; color: var(--muted); }
@@ -76,8 +66,6 @@
   .option-btn.correct .option-letter { background: var(--green); color: #000; }
   .option-btn.wrong .option-letter { background: rgba(255,68,68,.3); }
   .option-btn.correct-other .option-letter { background: var(--green); color: #000; }
-
-  /* Result */
   .result-icon { font-size: 80px; text-align: center; margin: 16px 0 8px; }
   .result-title { text-align: center; font-size: 26px; font-weight: 800; }
   .result-title.correct-text { color: var(--green); }
@@ -92,8 +80,6 @@
   .waiting-next { text-align: center; color: var(--muted); font-size: 13px; margin-top: 16px; }
   .dot-anim { animation: dots 1.5s infinite; }
   @keyframes dots { 0%{opacity:0.2} 50%{opacity:1} 100%{opacity:0.2} }
-
-  /* Final */
   .final-icon { font-size: 80px; text-align: center; margin: 20px 0 8px; }
   .final-sub { text-align: center; font-size: 13px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
   .final-title { text-align: center; font-size: 32px; font-weight: 900; color: var(--yellow); margin-top: 4px; }
@@ -108,16 +94,12 @@
 </style>
 </head>
 <body>
-
 <header>
   <div class="badge" id="badge">🎮 QUIZ GAME</div>
   <h1 id="game-title">Cargando...</h1>
   <p class="team-tag" id="team-tag">Tu equipo: <strong id="team-name-tag">...</strong></p>
 </header>
-
 <main>
-
-  <!-- WAITING -->
   <div class="screen active" id="screen-waiting">
     <div class="waiting-icon" id="wait-icon">🏁</div>
     <div class="waiting-title">Esperando al facilitador...</div>
@@ -131,27 +113,21 @@
       <div class="rounds-list" id="rounds-display"></div>
     </div>
   </div>
-
-  <!-- ROUND INTRO -->
   <div class="screen" id="screen-round">
     <div class="round-intro-icon" id="round-icon">⚡</div>
     <div class="round-intro-label">PRÓXIMA RONDA</div>
     <div class="round-intro-name" id="round-name">Ronda 1</div>
   </div>
-
-  <!-- QUESTION -->
   <div class="screen" id="screen-question">
     <div class="q-header">
       <span class="q-round" id="q-round"></span>
       <span class="q-counter" id="q-counter"></span>
     </div>
-    <div class="q-timer" id="q-timer">30</div>
+    <div class="q-timer" id="q-timer">12</div>
     <div class="timer-bar"><div class="timer-fill" id="timer-fill" style="width:100%"></div></div>
     <div class="q-text" id="q-text"></div>
     <div class="options" id="q-options"></div>
   </div>
-
-  <!-- RESULT -->
   <div class="screen" id="screen-result">
     <div class="result-icon" id="result-icon"></div>
     <div class="result-title" id="result-title"></div>
@@ -161,10 +137,8 @@
       <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Marcador</div>
       <div id="result-scores"></div>
     </div>
-    <div class="waiting-next"><span class="dot-anim">●</span> Esperando siguiente pregunta...</div>
+    <div class="waiting-next"><span class="dot-anim">●</span> Siguiente en <span id="team-countdown" style="font-weight:800;color:var(--yellow);">3</span>s...</div>
   </div>
-
-  <!-- FINAL -->
   <div class="screen" id="screen-final">
     <div class="final-icon" id="final-icon">🏆</div>
     <div class="final-sub">RESULTADO FINAL</div>
@@ -172,9 +146,7 @@
     <div class="final-my-score" id="final-my-score"></div>
     <div class="podium" id="final-podium"></div>
   </div>
-
 </main>
-
 <script>
 const socket = io();
 const teamId = parseInt(window.location.pathname.split('/').pop());
@@ -182,32 +154,25 @@ let config = null;
 let myScore = 0;
 let timerInterval = null;
 let selectedAnswer = null;
-let currentTimeLimit = 30;
 
-// Load config
 fetch('/api/config').then(r => r.json()).then(c => {
   config = c;
   const team = c.teams.find(t => t.id === teamId);
-
   document.getElementById('badge').textContent = '🎮 ' + c.title.toUpperCase();
   document.getElementById('game-title').textContent = c.title;
   document.title = c.title + (team ? ` — ${team.name}` : '');
-
   if (team) {
     document.getElementById('wait-icon').textContent = team.emoji || '🏁';
     document.getElementById('team-name-tag').textContent = `${team.emoji || ''} ${team.name}`;
   }
-
-  // Rules
   const rules = [
     { icon: '🔄', text: `${c.totalRounds} rondas · ${c.totalQuestions} preguntas en total` },
     { icon: '👥', text: 'Solo <strong>una persona</strong> por equipo toca la pantalla — ¡decidan juntos!' },
-    { icon: '🎯', text: 'Puntuación: <strong>70% aciertos + 30% velocidad</strong>' },
+    { icon: '🎯', text: 'Puntuación: <strong>aciertos + velocidad</strong>' },
   ];
   document.getElementById('rules-items').innerHTML = rules.map(r => `
     <div class="rule-item"><div class="rule-icon">${r.icon}</div><div>${r.text}</div></div>
   `).join('');
-
   document.getElementById('rounds-display').innerHTML = c.rounds.map(r => `
     <div class="round-item">
       <span>${r.emoji} ${r.name}</span>
@@ -216,7 +181,6 @@ fetch('/api/config').then(r => r.json()).then(c => {
   `).join('');
 });
 
-// Join team
 socket.emit('team:join', { teamId });
 
 socket.on('team:state', (state) => {
@@ -239,32 +203,24 @@ socket.on('round:start', ({ roundName, roundEmoji }) => {
 
 socket.on('question:show', (q) => {
   selectedAnswer = null;
-  currentTimeLimit = q.timeLimit;
   showQuestion(q);
   showScreen('screen-question');
-
-  // Timer
   clearInterval(timerInterval);
   let timeLeft = q.timeLimit;
   updateTimer(timeLeft, q.timeLimit);
   timerInterval = setInterval(() => {
     timeLeft--;
     updateTimer(timeLeft, q.timeLimit);
-    if (timeLeft <= 0) {
-      clearInterval(timerInterval);
-      disableOptions();
-    }
+    if (timeLeft <= 0) { clearInterval(timerInterval); disableOptions(); }
   }, 1000);
 });
 
-socket.on('question:reveal', ({ correctIndex, answers, questionScores, totalScores, teams }) => {
+socket.on('question:reveal', ({ correctIndex, answers, questionScores, totalScores, teams, autoAdvanceIn }) => {
   clearInterval(timerInterval);
   const myAnswer = answers[teamId];
   const isCorrect = myAnswer !== undefined && myAnswer.answerIndex === correctIndex;
   const pointsGained = questionScores?.[teamId] || 0;
   myScore = totalScores?.[teamId] || 0;
-
-  // Update option styles
   const btns = document.querySelectorAll('#q-options .option-btn');
   btns.forEach((btn, i) => {
     btn.disabled = true;
@@ -274,11 +230,19 @@ socket.on('question:reveal', ({ correctIndex, answers, questionScores, totalScor
       btn.classList.add('wrong');
     }
   });
-
-  // Show result after short delay
   setTimeout(() => {
     showResult(isCorrect, pointsGained, myAnswer, totalScores, teams || config?.teams || []);
     showScreen('screen-result');
+    let secs = autoAdvanceIn || 3;
+    const cdEl = document.getElementById('team-countdown');
+    if (cdEl) {
+      cdEl.textContent = secs;
+      const cdInt = setInterval(() => {
+        secs--;
+        cdEl.textContent = Math.max(0, secs);
+        if (secs <= 0) clearInterval(cdInt);
+      }, 1000);
+    }
   }, 1200);
 });
 
@@ -290,13 +254,10 @@ socket.on('game:end', ({ rankings, scores }) => {
 
 socket.on('game:reset', () => location.reload());
 
-// ── Helpers ─────────────────────────────────────────────
-
 function showQuestion(q) {
   document.getElementById('q-round').textContent = `${q.roundEmoji} ${q.roundName}`;
   document.getElementById('q-counter').textContent = `${q.questionIndex + 1}/${q.totalInRound}`;
   document.getElementById('q-text').textContent = q.text;
-
   const letters = ['A', 'B', 'C', 'D'];
   document.getElementById('q-options').innerHTML = q.options.map((opt, i) => `
     <button class="option-btn" id="opt-${i}" onclick="selectAnswer(${i}, ${q.timeLimit})">
@@ -309,11 +270,8 @@ function showQuestion(q) {
 function selectAnswer(index, timeLimit) {
   if (selectedAnswer !== null) return;
   selectedAnswer = index;
-
-  const btn = document.getElementById(`opt-${index}`);
-  btn.classList.add('selected');
+  document.getElementById(`opt-${index}`).classList.add('selected');
   disableOptions();
-
   const timeLeft = parseInt(document.getElementById('q-timer').textContent);
   socket.emit('team:answer', { teamId, answerIndex: index, timeLeft: Math.max(0, timeLeft) });
 }
@@ -336,9 +294,8 @@ function showResult(isCorrect, points, myAnswer, totalScores, teams) {
   const titleEl = document.getElementById('result-title');
   titleEl.textContent = isCorrect ? '¡Correcto!' : (myAnswer === undefined ? 'Tiempo agotado' : 'Incorrecto');
   titleEl.className = 'result-title ' + (isCorrect ? 'correct-text' : 'wrong-text');
-  document.getElementById('result-sub').textContent = isCorrect ? `+${points} puntos (precisión + velocidad)` : 'Sin puntos esta ronda';
+  document.getElementById('result-sub').textContent = isCorrect ? `+${points} puntos` : 'Sin puntos esta vez';
   document.getElementById('points-earned').textContent = isCorrect ? `+${points}` : '';
-
   const sorted = [...teams].sort((a, b) => (totalScores[b.id] || 0) - (totalScores[a.id] || 0));
   document.getElementById('result-scores').innerHTML = sorted.map(t => `
     <div class="scores-row ${t.id === teamId ? 'my-team' : ''}">
@@ -352,11 +309,9 @@ function showFinal(rankings) {
   const myRank = rankings.findIndex(t => t.id === teamId);
   const winner = rankings[0];
   const isWinner = winner.id === teamId;
-
   document.getElementById('final-icon').textContent = isWinner ? '🏆' : (['🥈','🥉','4️⃣'][myRank - 1] || '🎖️');
   document.getElementById('final-winner').textContent = isWinner ? `¡${winner.name} ganó!` : `Ganó: ${winner.emoji || ''} ${winner.name}`;
   document.getElementById('final-my-score').textContent = `Tu puntaje: ${myScore.toLocaleString()} pts`;
-
   document.getElementById('final-podium').innerHTML = rankings.map((t, i) => `
     <div class="podium-row ${i === 0 ? 'first' : 'other'}">
       <div class="podium-pos">${['🥇','🥈','🥉'][i] || (i+1)+'.'}</div>
