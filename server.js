@@ -32,13 +32,14 @@ function initTeams() {
 }
 initTeams();
 
-// Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files (supports both flat structure and public/ subfolder)
+const publicDir = fs.existsSync(path.join(__dirname, 'public')) ? path.join(__dirname, 'public') : __dirname;
+app.use(express.static(publicDir));
 
 // Routes
 app.get('/', (req, res) => res.redirect('/team/1'));
-app.get('/host', (req, res) => res.sendFile(path.join(__dirname, 'public', 'host.html')));
-app.get('/team/:id', (req, res) => res.sendFile(path.join(__dirname, 'public', 'team.html')));
+app.get('/host', (req, res) => res.sendFile(path.join(publicDir, 'host.html')));
+app.get('/team/:id', (req, res) => res.sendFile(path.join(publicDir, 'team.html')));
 
 // Expose game config to clients
 app.get('/api/config', (req, res) => {
