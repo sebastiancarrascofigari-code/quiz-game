@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Host — Quiz Game</title>
+<script src="/socket.io/socket.io.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --yellow: #FFE600;
+    --dark: #0a0a14;
+    --card: #141428;
+    --border: #2a2a4a;
+    --green: #00c853;
+    --red: #ff4444;
+    --text: #e0e0f0;
+    --muted: #888;
+  }
+  body { background: var(--dark); color: var(--text); font-family: 'Segoe UI', sans-serif; min-height: 100vh; }
+  header { text-align: center; padding: 24px 16px 16px; border-bottom: 1px solid var(--border); }
+  .badge { display: inline-block; background: var(--yellow); color: #000; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 8px; }
+  h1 { font-size: 28px; font-weight: 800; color: var(--yellow); letter-spacing: 2px; }
+  .subtitle { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .container { max-width: 900px; margin: 0 auto; padding: 24px 16px; }
+
+  /* Status bar */
+  .status-bar { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  .status-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--muted); display: inline-block; margin-right: 8px; }
+  .status-dot.active { background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+  .timer { font-size: 28px; font-weight: 800; color: var(--yellow); font-family: monospace; }
+  .timer.urgent { color: var(--red); }
+
+  /* Rounds */
+  .rounds { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .round-chip { padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid var(--border); color: var(--muted); cursor: default; }
+  .round-chip.active { background: var(--yellow); color: #000; border-color: var(--yellow); }
+
+  /* Panels grid */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  @media(max-width:650px){ .grid-2{ grid-template-columns:1fr; } }
+  .panel { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .panel-title { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+
+  /* Team rows */
+  .team-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .team-row:last-child { border-bottom: none; }
+  .team-name { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+  .conn-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+  .conn-dot.connected { background: var(--green); }
+  .team-score { font-size: 18px; font-weight: 800; color: var(--yellow); }
+  .answered-badge { background: var(--green); color: #000; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+  .waiting-badge { background: var(--border); color: var(--muted); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+
+  /* Question panel */
+  .question-panel { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; display: none; }
+  .q-meta { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  .q-text { font-size: 20px; font-weight: 700; margin-bottom: 16px; line-height: 1.4; }
+  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .option { padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); font-size: 14px; font-weight: 500; }
+  .option.correct { background: rgba(0,200,83,.15); border-color: var(--green); color: var(--green); }
+  .option.wrong { opacity: 0.4; }
+  .option-letter { font-weight: 800; margin-right: 8px; }
+
+  /* Buttons */
+  .btn { width: 100%; padding: 16px; border: none; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; letter-spacing: 1px; transition: opacity .2s, transform .1s; }
+  .btn:hover { opacity: 0.9; transform: scale(1.01); }
+  .btn:active { transform: scale(0.99); }
+  .btn-primary { background: var(--yellow); color: #000; }
+  .btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); margin-top: 8px; }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* Winner */
+  .winner-panel { display: none; background: var(--card); border: 2px solid var(--yellow); border-radius: 16px; padding: 32px; text-align: center; margin-bottom: 20px; }
+  .winner-emoji { font-size: 64px; }
+  .winner-title { font-size: 14px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin: 8px 0 4px; }
+  .winner-name { font-size: 36px; font-weight: 800; color: var(--yellow); }
+  .winner-score { font-size: 20px; color: var(--text); margin-top: 8px; }
+  .ranking-list { margin-top: 20px; }
+  .rank-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .rank-row:last-child { border-bottom: none; }
+  .rank-pos { font-size: 20px; font-weight: 800; width: 40px; }
+  .rank-name { flex: 1; font-weight: 600; }
+  .rank-score { font-size: 18px; font-weight: 800; color: var(--yellow); }
+
+  #answers-progress { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .progress-bar { width: 100%; height: 4px; background: var(--border); border-radius: 2px; margin-top: 6px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--yellow); border-radius: 2px; transition: width .3s; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge" id="badge">🎮 QUIZ GAME</div>
+  <h1 id="game-title">Cargando...</h1>
+  <p class="subtitle" id="game-subtitle">Panel del Facilitador</p>
+</header>
+
+<div class="container">
+
+  <!-- Status bar -->
+  <div class="status-bar">
+    <div>
+      <span class="status-dot" id="status-dot"></span>
+      <span id="status-text">Esperando equipos...</span>
+    </div>
+    <div class="timer" id="timer">00:00</div>
+  </div>
+
+  <!-- Rounds -->
+  <div class="rounds" id="rounds-container"></div>
+
+  <!-- Question -->
+  <div class="question-panel" id="question-panel">
+    <div class="q-meta" id="q-meta"></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="options" id="q-options"></div>
+    <div id="answers-progress"></div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+
+  <!-- Winner -->
+  <div class="winner-panel" id="winner-panel">
+    <div class="winner-emoji" id="winner-emoji">🏆</div>
+    <div class="winner-title">GANADOR</div>
+    <div class="winner-name" id="winner-name"></div>
+    <div class="winner-score" id="winner-score"></div>
+    <div class="ranking-list" id="ranking-list"></div>
+  </div>
+
+  <!-- Teams & Scores grid -->
+  <div class="grid-2">
+    <div class="panel">
+      <div class="panel-title">Equipos Conectados</div>
+      <div id="teams-list">
+        <div style="color:var(--muted);font-size:14px;">Esperando conexiones...</div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Marcador</div>
+      <div id="scores-list"></div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <button class="btn btn-primary" id="btn-start" disabled>▶ INICIAR JUEGO</button>
+  <button class="btn btn-primary" id="btn-next" style="display:none">▶ SIGUIENTE PREGUNTA</button>
+  <button class="btn btn-secondary" id="btn-reset">↺ Reiniciar</button>
+
+</div>
+
+<script>
+const socket = io();
+let config = null;
+let teams = [];
+let currentQ = null;
+let timerInterval = null;
+let timeLeft = 0;
+let answeredCount = 0;
+
+// Load config
+fetch('/api/config').then(r => r.json()).then(c => {
+  config = c;
+  teams = c.teams;
+  document.getElementById('badge').textContent = '🎮 ' + c.title.toUpperCase();
+  document.getElementById('game-title').textContent = c.title;
+  document.getElementById('game-subtitle').textContent = `Panel del Facilitador · ${c.totalQuestions} preguntas · ${c.totalRounds} rondas`;
+  document.title = c.title + ' — Facilitador';
+
+  // Render rounds
+  const rc = document.getElementById('rounds-container');
+  c.rounds.forEach((r, i) => {
+    const chip = document.createElement('div');
+    chip.className = 'round-chip';
+    chip.id = `round-chip-${i}`;
+    chip.textContent = `${r.emoji} ${r.name} (${r.count})`;
+    rc.appendChild(chip);
+  });
+
+  // Init scores
+  renderScores({});
+  renderTeams([]);
+});
+
+socket.emit('host:join');
+
+socket.on('host:state', (state) => {
+  renderTeams(state.connectedTeams || []);
+  renderScores(state.scores || {});
+});
+
+socket.on('host:team-connected', ({ connectedTeams, scores }) => {
+  renderTeams(connectedTeams);
+  const connected = connectedTeams.length;
+  if (connected > 0) document.getElementById('btn-start').disabled = false;
+  document.getElementById('status-text').textContent = `${connected} equipo${connected !== 1 ? 's' : ''} conectado${connected !== 1 ? 's' : ''}`;
+  document.getElementById('status-dot').classList.add('active');
+});
+
+socket.on('host:team-disconnected', ({ connectedTeams }) => {
+  renderTeams(connectedTeams);
+  if (connectedTeams.length === 0) {
+    document.getElementById('btn-start').disabled = true;
+    document.getElementById('status-dot').classList.remove('active');
+    document.getElementById('status-text').textContent = 'Esperando equipos...';
+  }
+});
+
+socket.on('game:start', () => {
+  document.getElementById('btn-start').style.display = 'none';
+  document.getElementById('status-text').textContent = '¡Juego iniciado!';
+});
+
+socket.on('host:question', (q) => {
+  currentQ = q;
+  answeredCount = 0;
+  showQuestion(q);
+  document.getElementById('btn-next').style.display = 'none';
+  updateAnswerProgress(0, teams.length);
+
+  // Timer
+  clearInterval(timerInterval);
+  timeLeft = q.timeLimit;
+  updateTimer(timeLeft);
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimer(timeLeft);
+    if (timeLeft <= 0) clearInterval(timerInterval);
+  }, 1000);
+
+  // Highlight active round
+  document.querySelectorAll('.round-chip').forEach((c, i) => {
+    c.classList.toggle('active', i === q.roundIndex);
+  });
+});
+
+socket.on('host:answer-received', ({ answeredCount: count, totalTeams }) => {
+  answeredCount = count;
+  updateAnswerProgress(count, totalTeams);
+});
+
+socket.on('question:reveal', ({ correctIndex, answers, questionScores, totalScores }) => {
+  clearInterval(timerInterval);
+  updateTimer(0);
+
+  // Show correct answer
+  const opts = document.querySelectorAll('#q-options .option');
+  opts.forEach((el, i) => {
+    el.classList.toggle('correct', i === correctIndex);
+    el.classList.toggle('wrong', i !== correctIndex);
+  });
+
+  // Update scores
+  renderScores(totalScores);
+
+  document.getElementById('btn-next').style.display = 'block';
+  document.getElementById('status-text').textContent = 'Respuesta revelada — avanza cuando estés listo';
+
+  // Show who answered correctly in teams list
+  renderTeamsWithAnswers(answers, correctIndex);
+});
+
+socket.on('round:start', ({ roundIndex, roundName, roundEmoji, scores }) => {
+  renderScores(scores);
+  document.getElementById('status-text').textContent = `▶ ${roundEmoji} ${roundName}`;
+  document.getElementById('question-panel').style.display = 'none';
+  document.getElementById('btn-next').style.display = 'none';
+});
+
+socket.on('host:end', ({ rankings }) => {
+  clearInterval(timerInterval);
+  document.getElementById('question-panel').style.display = 'none';
+  document.getElementById('btn-next').style.display = 'none';
+
+  const wp = document.getElementById('winner-panel');
+  wp.style.display = 'block';
+  const winner = rankings[0];
+  document.getElementById('winner-emoji').textContent = winner.emoji || '🏆';
+  document.getElementById('winner-name').textContent = winner.name;
+  document.getElementById('winner-score').textContent = winner.score.toLocaleString() + ' puntos';
+
+  const rl = document.getElementById('ranking-list');
+  rl.innerHTML = rankings.map((t, i) => `
+    <div class="rank-row">
+      <div class="rank-pos">${['🥇','🥈','🥉'][i] || (i+1)+'.'}</div>
+      <div class="rank-name">${t.emoji || ''} ${t.name}</div>
+      <div class="rank-score">${t.score.toLocaleString()}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('status-text').textContent = '🏁 Juego terminado';
+});
+
+socket.on('game:reset', () => {
+  location.reload();
+});
+
+// Buttons
+document.getElementById('btn-start').addEventListener('click', () => {
+  socket.emit('host:start');
+});
+document.getElementById('btn-next').addEventListener('click', () => {
+  document.getElementById('btn-next').style.display = 'none';
+  socket.emit('host:next');
+});
+document.getElementById('btn-reset').addEventListener('click', () => {
+  if (confirm('¿Seguro que quieres reiniciar el juego?')) socket.emit('host:reset');
+});
+
+// Helpers
+function showQuestion(q) {
+  const panel = document.getElementById('question-panel');
+  panel.style.display = 'block';
+  document.getElementById('q-meta').textContent = `${q.roundEmoji} ${q.roundName}  ·  Pregunta ${q.questionIndex + 1}/${q.totalInRound}  ·  ${q.globalIndex}/${q.totalQuestions} en total`;
+  document.getElementById('q-text').textContent = q.text;
+  const letters = ['A', 'B', 'C', 'D'];
+  document.getElementById('q-options').innerHTML = q.options.map((opt, i) => `
+    <div class="option" id="opt-${i}">
+      <span class="option-letter">${letters[i]}</span>${opt}
+    </div>
+  `).join('');
+  document.getElementById('status-text').textContent = `Pregunta ${q.globalIndex}/${q.totalQuestions} activa`;
+}
+
+function renderTeams(connectedTeams) {
+  if (!teams.length) return;
+  const list = document.getElementById('teams-list');
+  list.innerHTML = teams.map(t => {
+    const isConn = connectedTeams.some(c => c.id === t.id);
+    return `<div class="team-row">
+      <div class="team-name">
+        <div class="conn-dot ${isConn ? 'connected' : ''}"></div>
+        ${t.emoji || ''} ${t.name}
+      </div>
+      <div style="font-size:12px;color:var(--muted)">${isConn ? 'Conectado' : 'Esperando'}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderTeamsWithAnswers(answers, correctIndex) {
+  if (!teams.length) return;
+  const list = document.getElementById('teams-list');
+  list.innerHTML = teams.map(t => {
+    const ans = answers[t.id];
+    let badge = `<span class="waiting-badge">No respondió</span>`;
+    if (ans !== undefined) {
+      badge = ans.answerIndex === correctIndex
+        ? `<span class="answered-badge">✓ Correcto</span>`
+        : `<span style="background:rgba(255,68,68,.15);color:var(--red);font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">✗ Incorrecto</span>`;
+    }
+    return `<div class="team-row">
+      <div class="team-name">${t.emoji || ''} ${t.name}</div>
+      ${badge}
+    </div>`;
+  }).join('');
+}
+
+function renderScores(scores) {
+  if (!teams.length) return;
+  const sorted = [...teams].sort((a, b) => (scores[b.id] || 0) - (scores[a.id] || 0));
+  document.getElementById('scores-list').innerHTML = sorted.map(t => `
+    <div class="team-row">
+      <div class="team-name">${t.emoji || ''} ${t.name}</div>
+      <div class="team-score">${(scores[t.id] || 0).toLocaleString()}</div>
+    </div>
+  `).join('');
+}
+
+function updateTimer(seconds) {
+  const t = document.getElementById('timer');
+  const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+  const s = String(Math.max(0, seconds % 60)).padStart(2, '0');
+  t.textContent = `${m}:${s}`;
+  t.classList.toggle('urgent', seconds <= 10 && seconds > 0);
+}
+
+function updateAnswerProgress(count, total) {
+  document.getElementById('answers-progress').textContent = `${count}/${total} equipos respondieron`;
+  document.getElementById('progress-fill').style.width = `${total > 0 ? (count/total)*100 : 0}%`;
+}
+</script>
+</body>
+</html>

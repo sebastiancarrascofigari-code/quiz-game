@@ -1,0 +1,14 @@
+{
+  "name": "quiz-game",
+  "version": "1.0.0",
+  "description": "Quiz multijugador por equipos con Socket.io",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "npx nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2"
+  }
+}
