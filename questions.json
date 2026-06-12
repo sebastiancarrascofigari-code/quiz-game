@@ -10,35 +10,35 @@
     {
       "name": "Ronda 1 — Básicos del fútbol",
       "emoji": "⚽",
-      "timePerQuestion": 8,
+      "timePerQuestion": 12,
       "questions": [
         {
           "type": "multiple",
           "text": "¿Cuál es la longitud permitida por la FIFA para una cancha en partidos internacionales oficiales?",
           "options": ["80-100 metros de largo", "90-110 metros de largo", "100-110 metros de largo", "110-120 metros de largo"],
           "correct": 2,
-          "timeLimit": 8
+          "timeLimit": 12
         },
         {
           "type": "truefalse",
           "text": "El equipo completo de árbitros en terreno y cabina VAR en un partido es de 9 personas.",
           "options": ["Verdadero", "Falso"],
           "correct": 1,
-          "timeLimit": 5
+          "timeLimit": 12
         },
         {
           "type": "combo",
           "text": "¿Cuáles de estas afirmaciones son correctas?\n1. Un partido oficial dura 100 minutos.\n2. Se pueden hacer 6 cambios durante el tiempo oficial.\n3. Juegan 11 jugadores en cancha por equipo.",
           "options": ["1 y 3", "1 y 2", "Solo 3"],
           "correct": 2,
-          "timeLimit": 10
+          "timeLimit": 12
         },
         {
           "type": "multiple",
           "text": "¿Cuál es la altura reglamentaria de un arco de fútbol según la FIFA?",
           "options": ["2.00 metros", "2.20 metros", "2.44 metros", "2.80 metros"],
           "correct": 2,
-          "timeLimit": 8
+          "timeLimit": 12
         },
         {
           "type": "multiple",
@@ -50,105 +50,105 @@
             "Los goles en offside no son válidos"
           ],
           "correct": 2,
-          "timeLimit": 8
+          "timeLimit": 12
         }
       ]
     },
     {
       "name": "Ronda 2 — Cultura general",
       "emoji": "🌍",
-      "timePerQuestion": 8,
+      "timePerQuestion": 12,
       "questions": [
         {
           "type": "multiple",
           "text": "¿Cuál es el plato más típico y tradicional de Paraguay?",
           "options": ["Feijoada", "Sancocho", "Vori Vori", "Empanada"],
           "correct": 2,
-          "timeLimit": 8
+          "timeLimit": 12
         },
         {
           "type": "truefalse",
           "text": "El animal símbolo de los Estados Unidos es el Águila Calva.",
           "options": ["Verdadero", "Falso"],
           "correct": 0,
-          "timeLimit": 5
+          "timeLimit": 12
         },
         {
           "type": "combo",
           "text": "¿Cuál de estas afirmaciones es correcta?\n1. La capital de Curaçao es Willemstad.\n2. La capital de la República Democrática del Congo es Nairobi.\n3. Cabo Verde está en Oceanía.",
           "options": ["Solo 1", "1 y 3", "2 y 3"],
           "correct": 0,
-          "timeLimit": 10
+          "timeLimit": 12
         },
         {
           "type": "multiple",
           "text": "¿Cuál es la bebida alcohólica tradicional más popular de Corea del Sur?",
           "options": ["Sake", "Soju", "Maotai", "Shochu"],
           "correct": 1,
-          "timeLimit": 8
+          "timeLimit": 12
         },
         {
           "type": "multiple",
           "text": "De los países clasificados al Mundial 2026, ¿cuál tiene la menor extensión territorial pero la mayor cantidad de habitantes?",
           "options": ["Países Bajos", "Japón", "Corea del Sur", "Nigeria"],
           "correct": 1,
-          "timeLimit": 8
+          "timeLimit": 12
         }
       ]
     },
     {
       "name": "Ronda 3 — Historia",
       "emoji": "📖",
-      "timePerQuestion": 8,
+      "timePerQuestion": 12,
       "questions": [
         {
           "type": "multiple",
           "text": "¿En qué país se celebró el primer Mundial de fútbol de la historia, en 1930?",
           "options": ["Argentina", "Italia", "Uruguay", "Francia"],
           "correct": 2,
-          "timeLimit": 8
+          "timeLimit": 12
         },
         {
           "type": "truefalse",
           "text": "La canción 'Waka Waka' de Shakira fue la canción oficial del Mundial de Brasil 2014.",
           "options": ["Verdadero", "Falso"],
           "correct": 1,
-          "timeLimit": 5
+          "timeLimit": 12
         },
         {
           "type": "multiple",
           "text": "¿En qué edición de la Copa del Mundo la mascota oficial fue un león llamado Goleo VI?",
           "options": ["Inglaterra 1966", "Alemania 2006", "Sudáfrica 2010", "Francia 1998"],
           "correct": 1,
-          "timeLimit": 8
+          "timeLimit": 12
         },
         {
           "type": "multiple",
           "text": "¿En qué continente nunca se ha organizado ni se ha jugado un partido de un Mundial de fútbol masculino?",
           "options": ["África", "Asia", "Oceanía", "América del Norte"],
           "correct": 2,
-          "timeLimit": 8
+          "timeLimit": 12
         },
         {
           "type": "multiple",
           "text": "¿Qué selección es la única en todo el mundo que ha participado en absolutamente todas las ediciones de la Copa del Mundo?",
           "options": ["Alemania", "Italia", "Argentina", "Brasil"],
           "correct": 3,
-          "timeLimit": 8
+          "timeLimit": 12
         },
         {
           "type": "truefalse",
           "text": "Solo 8 países diferentes han logrado ganar la Copa del Mundo a lo largo de toda la historia.",
           "options": ["Verdadero", "Falso"],
           "correct": 0,
-          "timeLimit": 5
+          "timeLimit": 12
         }
       ]
     },
     {
       "name": "Ronda 4 — Mundial 2026",
       "emoji": "🌎",
-      "timePerQuestion": 8,
+      "timePerQuestion": 12,
       "questions": [
         {
           "type": "multiple",
@@ -160,14 +160,14 @@
             "Estados Unidos, México y Panamá"
           ],
           "correct": 0,
-          "timeLimit": 8
+          "timeLimit": 12
         },
         {
           "type": "truefalse",
           "text": "En el nuevo formato del Mundial 2026, participarán 48 equipos y se disputarán exactamente 102 partidos.",
           "options": ["Verdadero", "Falso"],
           "correct": 1,
-          "timeLimit": 5
+          "timeLimit": 12
         },
         {
           "type": "multiple",
@@ -179,14 +179,14 @@
             "Football Returns Home (El fútbol vuelve a casa)"
           ],
           "correct": 1,
-          "timeLimit": 8
+          "timeLimit": 12
         },
         {
           "type": "combo",
           "text": "¿Cuáles de las siguientes afirmaciones sobre el Mundial 2026 son correctas?\n1. Este mundial será la edición más larga de la historia.\n2. Es el primer mundial organizado conjuntamente por 3 países.\n3. Los partidos durarán 60 minutos en tiempo cronometrado.",
           "options": ["Solo 2", "1 y 2", "Todas son correctas"],
           "correct": 1,
-          "timeLimit": 10
+          "timeLimit": 12
         },
         {
           "type": "multiple",
@@ -198,7 +198,7 @@
             "Live It Up, por Nicky Jam y Will Smith"
           ],
           "correct": 1,
-          "timeLimit": 8
+          "timeLimit": 12
         },
         {
           "type": "multiple",
@@ -210,21 +210,21 @@
             "Weam, Bob y Tico"
           ],
           "correct": 1,
-          "timeLimit": 8
+          "timeLimit": 12
         },
         {
           "type": "truefalse",
           "text": "La gran final del Mundial 2026 se jugará en la Ciudad de México, en el histórico Estadio Azteca.",
           "options": ["Verdadero", "Falso"],
           "correct": 1,
-          "timeLimit": 5
+          "timeLimit": 12
         },
         {
           "type": "multiple",
           "text": "¿Qué futbolista se transformó en 'Trending Topic' y fenómeno viral en redes sociales justo antes de arrancar este mundial?",
           "options": ["Kylian Mbappé", "Tim Payne", "Lionel Messi", "Lamine Yamal"],
           "correct": 1,
-          "timeLimit": 8
+          "timeLimit": 12
         }
       ]
     }
