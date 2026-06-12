@@ -138,9 +138,9 @@
         },
         {
           "type": "truefalse",
-          "text": "8 países diferentes han logrado ganar la Copa del Mundo a lo largo de toda la historia.",
+          "text": "7 países diferentes han logrado ganar la Copa del Mundo a lo largo de toda la historia.",
           "options": ["Verdadero", "Falso"],
-          "correct": 0,
+          "correct": 1,
           "timeLimit": 5
         }
       ]
@@ -192,7 +192,7 @@
           "type": "multiple",
           "text": "¿Cuál es la canción oficial que la FIFA presentó para el Mundial 2026?",
           "options": [
-            "Waka Waka, por Shakira",
+            "Blackout, por Emilia, Tini y Nicki Nicole",
             "Dai Dai, por Shakira y Burna Boy",
             "Hayya Hayya, por Trinidad Cardona",
             "Live It Up, por Nicky Jam y Will Smith"
@@ -221,9 +221,9 @@
         },
         {
           "type": "multiple",
-          "text": "¿Qué futbolista se transformó en 'Trending Topic' y fenómeno viral en redes sociales justo antes de arrancar este mundial?",
-          "options": ["Kylian Mbappé", "Tim Payne", "Lionel Messi", "Lamine Yamal"],
-          "correct": 1,
+          "text": "¿En qué país y selección nacional juega la superestrella viral de internet Tim Payne?",
+          "options": ["Australia", "Canadá", "Nueva Zelanda", "Jamaica"],
+          "correct": 2,
           "timeLimit": 8
         }
       ]
