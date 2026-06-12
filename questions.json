@@ -29,9 +29,9 @@
         {
           "type": "combo",
           "text": "¿Cuáles de estas afirmaciones son correctas?\n1. Un partido oficial dura 100 minutos.\n2. Se pueden hacer 6 cambios durante el tiempo oficial.\n3. Juegan 11 jugadores en cancha por equipo.",
-          "options": ["Solo 1", "1 y 2", "1 y 3", "Solo 3"],
-          "correct": 3,
-          "timeLimit": 8
+          "options": ["1 y 3", "1 y 2", "Solo 3"],
+          "correct": 2,
+          "timeLimit": 10
         },
         {
           "type": "multiple",
@@ -76,9 +76,9 @@
         {
           "type": "combo",
           "text": "¿Cuál de estas afirmaciones es correcta?\n1. La capital de Curaçao es Willemstad.\n2. La capital de la República Democrática del Congo es Nairobi.\n3. Cabo Verde está en Oceanía.",
-          "options": ["Solo 1", "1 y 3", "2 y 3", "1 y 2"],
+          "options": ["Solo 1", "1 y 3", "2 y 3"],
           "correct": 0,
-          "timeLimit": 8
+          "timeLimit": 10
         },
         {
           "type": "multiple",
@@ -184,9 +184,9 @@
         {
           "type": "combo",
           "text": "¿Cuáles de las siguientes afirmaciones sobre el Mundial 2026 son correctas?\n1. Este mundial será la edición más larga de la historia.\n2. Es el primer mundial organizado conjuntamente por 3 países.\n3. Los partidos durarán 60 minutos en tiempo cronometrado.",
-          "options": ["1 y 3", "Solo 2", "1 y 2", "Todas son correctas"],
-          "correct": 2,
-          "timeLimit": 8
+          "options": ["Solo 2", "1 y 2", "Todas son correctas"],
+          "correct": 1,
+          "timeLimit": 10
         },
         {
           "type": "multiple",
