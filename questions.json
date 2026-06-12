@@ -4,7 +4,7 @@
   "teams": [
     { "id": 1, "name": "Brasil",         "emoji": "💛🌴" },
     { "id": 2, "name": "Argentina",      "emoji": "💙🥩" },
-    { "id": 3, "name": "Chile+Colombia", "emoji": "❤️🦅☕" }
+    { "id": 3, "name": "Chile+Colombia+México", "emoji": "❤️🦅☕🌮" }
   ],
   "rounds": [
     {
@@ -31,7 +31,7 @@
           "text": "¿Cuáles de estas afirmaciones son correctas?\n1. Un partido oficial dura 100 minutos.\n2. Se pueden hacer 6 cambios durante el tiempo oficial.\n3. Juegan 11 jugadores en cancha por equipo.",
           "options": ["1 y 3", "1 y 2", "Solo 3"],
           "correct": 2,
-          "timeLimit": 8
+          "timeLimit": 10
         },
         {
           "type": "multiple",
@@ -78,7 +78,7 @@
           "text": "¿Cuál de estas afirmaciones es correcta?\n1. La capital de Curaçao es Willemstad.\n2. La capital de la República Democrática del Congo es Nairobi.\n3. Cabo Verde está en Oceanía.",
           "options": ["Solo 1", "1 y 3", "2 y 3"],
           "correct": 0,
-          "timeLimit": 8
+          "timeLimit": 10
         },
         {
           "type": "multiple",
@@ -132,15 +132,15 @@
         {
           "type": "multiple",
           "text": "¿Qué selección es la única en todo el mundo que ha participado en absolutamente todas las ediciones de la Copa del Mundo?",
-          "options": ["Alemania", "Uruguay", "Argentina", "Brasil"],
+          "options": ["Alemania", "Italia", "Argentina", "Brasil"],
           "correct": 3,
           "timeLimit": 8
         },
         {
           "type": "truefalse",
-          "text": "7 países diferentes han logrado ganar la Copa del Mundo a lo largo de toda la historia.",
+          "text": "Solo 8 países diferentes han logrado ganar la Copa del Mundo a lo largo de toda la historia.",
           "options": ["Verdadero", "Falso"],
-          "correct": 1,
+          "correct": 0,
           "timeLimit": 5
         }
       ]
@@ -154,12 +154,12 @@
           "type": "multiple",
           "text": "¿En qué países se celebrará de forma conjunta el Mundial de fútbol de 2026?",
           "options": [
+            "Estados Unidos, Canadá y México",
             "Brasil, Argentina y Uruguay",
             "España, Portugal y Marruecos",
-            "Estados Unidos, Canadá y México",
             "Estados Unidos, México y Panamá"
           ],
-          "correct": 2,
+          "correct": 0,
           "timeLimit": 8
         },
         {
@@ -173,10 +173,10 @@
           "type": "multiple",
           "text": "¿Cuál es el lema o marca oficial presentada por la FIFA para el Mundial 2026?",
           "options": [
-            "United as One",
-            "We Are 26",
-            "The World is Playing",
-            "Football Returns Home"
+            "United as One (Unidos como uno)",
+            "We Are 26 (Somos 26)",
+            "The World is Playing (El mundo juega)",
+            "Football Returns Home (El fútbol vuelve a casa)"
           ],
           "correct": 1,
           "timeLimit": 8
@@ -186,13 +186,13 @@
           "text": "¿Cuáles de las siguientes afirmaciones sobre el Mundial 2026 son correctas?\n1. Este mundial será la edición más larga de la historia.\n2. Es el primer mundial organizado conjuntamente por 3 países.\n3. Los partidos durarán 60 minutos en tiempo cronometrado.",
           "options": ["Solo 2", "1 y 2", "Todas son correctas"],
           "correct": 1,
-          "timeLimit": 8
+          "timeLimit": 10
         },
         {
           "type": "multiple",
           "text": "¿Cuál es la canción oficial que la FIFA presentó para el Mundial 2026?",
           "options": [
-            "Blackout, por Emilia, Tini y Nicki Nicole",
+            "Waka Waka, por Shakira",
             "Dai Dai, por Shakira y Burna Boy",
             "Hayya Hayya, por Trinidad Cardona",
             "Live It Up, por Nicky Jam y Will Smith"
@@ -205,7 +205,7 @@
           "text": "¿Cuáles son las 3 mascotas oficiales que representan a los países anfitriones del Mundial 2026?",
           "options": [
             "Striker, Footix y Zakumi",
-            "Burgie, Taco y Moose",
+            "Burgie (EE.UU.), Taco (México) y Moose (Canadá)",
             "Spike, Juanito y Maple",
             "Weam, Bob y Tico"
           ],
@@ -221,9 +221,9 @@
         },
         {
           "type": "multiple",
-          "text": "¿En qué país y selección nacional juega la superestrella viral de internet Tim Payne?",
-          "options": ["Australia", "Canadá", "Nueva Zelanda", "Jamaica"],
-          "correct": 2,
+          "text": "¿Qué futbolista se transformó en 'Trending Topic' y fenómeno viral en redes sociales justo antes de arrancar este mundial?",
+          "options": ["Kylian Mbappé", "Tim Payne", "Lionel Messi", "Lamine Yamal"],
+          "correct": 1,
           "timeLimit": 8
         }
       ]
