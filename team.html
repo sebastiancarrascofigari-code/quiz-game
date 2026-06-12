@@ -31,6 +31,7 @@
   .screen { display: none; }
   .screen.active { display: block; }
 
+  /* ── WAITING ── */
   .wait-icon { font-size: 64px; text-align: center; margin: 28px 0 14px; }
   .wait-title { text-align: center; font-size: 22px; font-weight: 700; }
   .wait-sub { text-align: center; color: var(--muted); margin-top: 8px; font-size: 14px; }
@@ -48,10 +49,12 @@
   .btn-ready:disabled { opacity: 0.5; cursor: default; transform: none; }
   .ready-msg { display: none; text-align: center; margin-top: 14px; color: var(--green); font-weight: 700; font-size: 16px; }
 
+  /* ── ROUND INTRO ── */
   .round-icon { font-size: 72px; text-align: center; margin: 36px 0 12px; }
   .round-label { text-align: center; font-size: 12px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
   .round-name { text-align: center; font-size: 28px; font-weight: 800; color: var(--yellow); margin-top: 6px; }
 
+  /* ── QUESTION ── */
   .q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
   .q-round { font-size: 12px; color: var(--muted); }
   .q-counter { font-size: 12px; color: var(--muted); }
@@ -81,6 +84,7 @@
   .opt.wrong .opt-letter       { background: rgba(255,68,68,.3); }
   .opt.correct-other .opt-letter { background: var(--green); color: #000; }
 
+  /* ── FINAL ── */
   .final-icon  { font-size: 80px; text-align: center; margin: 24px 0 8px; }
   .final-label { text-align: center; font-size: 12px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
   .final-name  { text-align: center; font-size: 30px; font-weight: 900; color: var(--yellow); margin-top: 4px; }
@@ -105,6 +109,7 @@
 
 <main>
 
+  <!-- WAITING -->
   <div class="screen active" id="screen-waiting">
     <div class="wait-icon" id="wait-icon">🏁</div>
     <div class="wait-title" id="wait-title">Esperando al facilitador...</div>
@@ -121,12 +126,14 @@
     <div class="ready-msg" id="ready-msg">✓ Confirmado — esperando al facilitador</div>
   </div>
 
+  <!-- ROUND INTRO -->
   <div class="screen" id="screen-round">
     <div class="round-icon" id="round-icon">⚡</div>
     <div class="round-label">PRÓXIMA RONDA</div>
     <div class="round-name" id="round-name">Ronda</div>
   </div>
 
+  <!-- QUESTION -->
   <div class="screen" id="screen-question">
     <div class="q-header">
       <span class="q-round" id="q-round-label"></span>
@@ -138,6 +145,7 @@
     <div class="options" id="q-options"></div>
   </div>
 
+  <!-- FINAL -->
   <div class="screen" id="screen-final">
     <div class="final-icon" id="final-icon">🏆</div>
     <div class="final-label">RESULTADO FINAL</div>
@@ -161,16 +169,19 @@ fetch('/api/config').then(r => r.json()).then(cfg => {
   document.getElementById('badge').textContent = '🎮 ' + cfg.title.toUpperCase();
   document.getElementById('game-title').textContent = cfg.title;
   document.title = cfg.title + (team ? ' — ' + team.name : '');
+
   if (team) {
     document.getElementById('wait-icon').textContent = team.emoji || '🏁';
     document.getElementById('team-name-tag').textContent = (team.emoji || '') + ' ' + team.name;
   }
+
   document.getElementById('rules-list').innerHTML = [
     { icon: '🔄', text: cfg.totalRounds + ' rondas · ' + cfg.totalQuestions + ' preguntas en total' },
     { icon: '👥', text: 'Solo <strong>una persona</strong> por equipo toca la pantalla — ¡decidan juntos!' },
     { icon: '🎯', text: '1 punto por respuesta correcta, 0 por incorrecta o sin respuesta' },
     { icon: '⚡', text: '8 segundos por pregunta' },
   ].map(r => '<div class="rule-item"><div class="rule-icon">' + r.icon + '</div><div>' + r.text + '</div></div>').join('');
+
   document.getElementById('rounds-list').innerHTML = cfg.rounds.map(r =>
     '<div class="round-item"><span>' + r.emoji + ' ' + r.name + '</span><span class="round-count">' + r.count + ' preguntas</span></div>'
   ).join('');
@@ -210,6 +221,7 @@ socket.on('question:reveal', function(data) {
   clearInterval(timerInterval);
   var correctIndex = data.correctIndex;
   var myAnswer = data.answers && data.answers[teamId];
+
   var btns = document.querySelectorAll('#q-options .opt');
   for (var i = 0; i < btns.length; i++) {
     btns[i].disabled = true;
@@ -220,6 +232,7 @@ socket.on('question:reveal', function(data) {
       btns[i].classList.add('wrong');
     }
   }
+
   var correct = myAnswer && myAnswer.answerIndex === correctIndex;
   var timer = document.getElementById('q-timer');
   timer.textContent = correct ? '✓' : '✗';
@@ -250,6 +263,7 @@ function renderQuestion(q) {
   document.getElementById('q-round-label').textContent = (q.roundEmoji || '') + ' ' + q.roundName;
   document.getElementById('q-counter-label').textContent = (q.questionIndex + 1) + '/' + q.totalInRound;
   document.getElementById('q-text').textContent = q.text;
+
   var letters = ['A','B','C','D'];
   var container = document.getElementById('q-options');
   container.className = 'options' + (q.options.length === 2 ? ' opts-2' : '');
