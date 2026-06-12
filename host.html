@@ -139,6 +139,7 @@ fetch('/api/config').then(r => r.json()).then(c => {
 
   renderTeams();
   renderScores({});
+  updateStartButton();
 });
 
 socket.emit('host:join');
