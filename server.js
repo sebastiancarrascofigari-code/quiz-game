@@ -191,6 +191,7 @@ function sendQuestion() {
     globalIndex: totalQ,
     totalQuestions: totalAll,
     text: question.text,
+    image: question.image || null,
     options: question.options,
     timeLimit,
   };
