@@ -12,213 +12,51 @@
       "emoji": "⚽",
       "timePerQuestion": 8,
       "questions": [
-        {
-          "text": "¿Cuántos jugadores por equipo deben estar en cancha al inicio de un partido oficial?",
-          "options": ["10", "11", "12", "13"],
-          "correct": 1
-        },
-        {
-          "text": "¿Cuántos árbitros componen el equipo de campo principal (sin contar el VAR)?",
-          "options": ["2", "3", "4", "5"],
-          "correct": 2
-        },
-        {
-          "text": "¿Cuál es la altura reglamentaria de un arco de fútbol profesional?",
-          "options": ["2.00 metros", "2.44 metros", "2.50 metros", "3.00 metros"],
-          "correct": 1
-        },
-        {
-          "text": "¿Cuántos cambios están permitidos actualmente por equipo en un partido oficial?",
-          "options": ["3", "4", "5", "6"],
-          "correct": 2
-        },
-        {
-          "text": "¿Cuántos jugadores podrá inscribir cada selección para el Mundial 2026?",
-          "options": ["23", "24", "26", "30"],
-          "correct": 2
-        },
-        {
-          "text": "Según el reglamento oficial de la FIFA, ¿cuánto debe pesar un balón de fútbol oficial al comienzo de un partido?",
-          "options": ["Entre 360 y 400 gramos", "Entre 410 y 450 gramos", "Entre 460 y 500 gramos", "Entre 510 y 550 gramos"],
-          "correct": 1
-        },
-        {
-          "text": "¿Cuántos partidos totales deberá jugar un equipo para ser campeón en el formato 2026?",
-          "options": ["7", "8", "9", "10"],
-          "correct": 1
-        }
+        { "type": "multiple", "text": "¿Cuál es la longitud permitida por la FIFA para una cancha en partidos internacionales oficiales?", "options": ["80-100 metros de largo", "90-110 metros de largo", "100-110 metros de largo", "110-120 metros de largo"], "correct": 2, "timeLimit": 8 },
+        { "type": "truefalse", "text": "El equipo completo de árbitros en terreno y cabina VAR en un partido es de 9 personas.", "options": ["Verdadero", "Falso"], "correct": 1, "timeLimit": 5 },
+        { "type": "combo", "text": "¿Cuáles de estas afirmaciones son correctas?\n1. Un partido oficial dura 100 minutos.\n2. Se pueden hacer 6 cambios durante el tiempo oficial.\n3. Juegan 11 jugadores en cancha por equipo.", "options": ["Solo 1", "1 y 2", "1 y 3", "Solo 3"], "correct": 3, "timeLimit": 8 },
+        { "type": "multiple", "text": "¿Cuál es la altura reglamentaria de un arco de fútbol según la FIFA?", "options": ["2.00 metros", "2.20 metros", "2.44 metros", "2.80 metros"], "correct": 2, "timeLimit": 8 },
+        { "type": "multiple", "text": "¿Cuál de las siguientes afirmaciones es FALSA?", "options": ["Un balón oficial pesa entre 410 y 450 gramos", "El arquero puede tomar la pelota con la mano dentro de su área", "La tarjeta amarilla significa 8 minutos fuera para el jugador", "Los goles en offside no son válidos"], "correct": 2, "timeLimit": 8 }
       ]
     },
     {
-      "name": "Ronda 2 — Conociendo a los participantes",
+      "name": "Ronda 2 — Cultura general",
       "emoji": "🌍",
       "timePerQuestion": 8,
       "questions": [
-        {
-          "text": "¿Cuál es la capital de la República Democrática del Congo? (País que busca su pase vía repechaje)",
-          "options": ["Nairobi", "Kinshasa", "Brazzaville", "Luanda"],
-          "correct": 1
-        },
-        {
-          "text": "¿A cuánto asciende aproximadamente la cantidad de habitantes en Jordania?",
-          "options": ["Entre 2 y 5 millones", "Entre 11 y 13 millones", "Entre 22 y 25 millones", "Entre 35 y 40 millones"],
-          "correct": 1
-        },
-        {
-          "text": "¿Cuál de los siguientes es considerado un plato principal y típico muy tradicional de Paraguay?",
-          "options": ["Feijoada", "Sancocho", "Vori Vori", "Bandeja Paisa"],
-          "correct": 2
-        },
-        {
-          "text": "¿Cuál es considerado el animal símbolo nacional oficial de Canadá?",
-          "options": ["El Castor", "El Alce", "El Oso Polar", "El Lobo Gris"],
-          "correct": 0
-        },
-        {
-          "text": "¿Cuál es la bebida alcohólica tradicional más popular en Corea del Sur?",
-          "options": ["Sake", "Soju", "Kombucha", "Maotai"],
-          "correct": 1
-        },
-        {
-          "text": "¿De qué participante del Mundial 2026 es esta bandera?",
-          "image": "https://flagcdn.com/w160/cw.png",
-          "options": ["Jamaica", "Curaçao", "Aruba", "Trinidad y Tobago"],
-          "correct": 1
-        }
+        { "type": "multiple", "text": "¿Cuál es el plato más típico y tradicional de Paraguay?", "options": ["Feijoada", "Sancocho", "Vori Vori", "Empanada"], "correct": 2, "timeLimit": 8 },
+        { "type": "truefalse", "text": "El animal símbolo de los Estados Unidos es el Águila Calva.", "options": ["Verdadero", "Falso"], "correct": 0, "timeLimit": 5 },
+        { "type": "combo", "text": "¿Cuál de estas afirmaciones es correcta?\n1. La capital de Curaçao es Willemstad.\n2. La capital de la República Democrática del Congo es Nairobi.\n3. Cabo Verde está en Oceanía.", "options": ["Solo 1", "1 y 3", "2 y 3", "1 y 2"], "correct": 0, "timeLimit": 8 },
+        { "type": "multiple", "text": "¿Cuál es la bebida alcohólica tradicional más popular de Corea del Sur?", "options": ["Sake", "Soju", "Maotai", "Shochu"], "correct": 1, "timeLimit": 8 },
+        { "type": "multiple", "text": "De los países clasificados al Mundial 2026, ¿cuál tiene la menor extensión territorial pero la mayor cantidad de habitantes?", "options": ["Países Bajos", "Japón", "Corea del Sur", "Nigeria"], "correct": 1, "timeLimit": 8 }
       ]
     },
     {
-      "name": "Ronda 3 — Historia de las selecciones",
-      "emoji": "🏆",
-      "timePerQuestion": 8,
-      "questions": [
-        {
-          "text": "¿Qué selección tiene el récord de más títulos mundiales ganados?",
-          "options": ["Alemania", "Italia", "Brasil", "Argentina"],
-          "correct": 2
-        },
-        {
-          "text": "¿Qué selección africana fue la primera en llegar a una semifinal de un Mundial?",
-          "options": ["Camerún", "Senegal", "Ghana", "Marruecos"],
-          "correct": 3
-        },
-        {
-          "text": "¿Cuál es la única selección europea que ha ganado una Copa del Mundo jugando en el continente americano?",
-          "options": ["Francia", "Alemania", "España", "Italia"],
-          "correct": 1
-        },
-        {
-          "text": "¿Cuál es la única selección que ha participado en todas las ediciones de la Copa del Mundo?",
-          "options": ["Alemania", "Brasil", "Italia", "Argentina"],
-          "correct": 1
-        },
-        {
-          "text": "¿Qué selección ganó dos mundiales de forma consecutiva (1934 y 1938)?",
-          "options": ["Brasil", "Italia", "Uruguay", "Alemania"],
-          "correct": 1
-        }
-      ]
-    },
-    {
-      "name": "Ronda 4 — Historia de mundiales",
+      "name": "Ronda 3 — Historia",
       "emoji": "📖",
       "timePerQuestion": 8,
       "questions": [
-        {
-          "text": "¿En qué país se celebró el primer mundial de la historia (1930)?",
-          "options": ["Argentina", "Italia", "Uruguay", "Brasil"],
-          "correct": 2
-        },
-        {
-          "text": "¿En qué continente nunca se ha organizado un mundial de fútbol masculino?",
-          "options": ["África", "Asia", "Oceanía", "América del Norte"],
-          "correct": 2
-        },
-        {
-          "text": "¿Cuál fue el primer Mundial de la historia en ser transmitido en vivo por televisión?",
-          "options": ["Suecia 1958", "Brasil 1950", "Suiza 1954", "Inglaterra 1966"],
-          "correct": 2
-        },
-        {
-          "text": "¿En qué mundial se utilizó por primera vez una mascota oficial?",
-          "options": ["Inglaterra 1966", "México 1970", "Alemania 1974", "Argentina 1978"],
-          "correct": 1
-        },
-        {
-          "text": "¿Cuál fue el primer mundial en tener 32 selecciones participantes?",
-          "options": ["Estados Unidos 1994", "Francia 1998", "Corea-Japón 2002", "Alemania 2006"],
-          "correct": 1
-        }
+        { "type": "multiple", "text": "¿En qué país se celebró el primer Mundial de fútbol de la historia, en 1930?", "options": ["Argentina", "Italia", "Uruguay", "Francia"], "correct": 2, "timeLimit": 8 },
+        { "type": "truefalse", "text": "La canción 'Waka Waka' de Shakira fue la canción oficial del Mundial de Brasil 2014.", "options": ["Verdadero", "Falso"], "correct": 1, "timeLimit": 5 },
+        { "type": "multiple", "text": "¿En qué edición de la Copa del Mundo la mascota oficial fue un león llamado Goleo VI?", "options": ["Inglaterra 1966", "Alemania 2006", "Sudáfrica 2010", "Francia 1998"], "correct": 1, "timeLimit": 8 },
+        { "type": "multiple", "text": "¿En qué continente nunca se ha organizado ni se ha jugado un partido de un Mundial de fútbol masculino?", "options": ["África", "Asia", "Oceanía", "América del Norte"], "correct": 2, "timeLimit": 8 },
+        { "type": "multiple", "text": "¿Qué selección es la única en todo el mundo que ha participado en absolutamente todas las ediciones de la Copa del Mundo?", "options": ["Alemania", "Italia", "Argentina", "Brasil"], "correct": 3, "timeLimit": 8 },
+        { "type": "truefalse", "text": "Solo 8 países diferentes han logrado ganar la Copa del Mundo a lo largo de toda la historia.", "options": ["Verdadero", "Falso"], "correct": 0, "timeLimit": 5 }
       ]
     },
     {
-      "name": "Ronda 5 — Récords y figuras",
-      "emoji": "🌟",
-      "timePerQuestion": 8,
-      "questions": [
-        {
-          "text": "¿Cuál de estos jugadores ha participado en 5 ediciones diferentes de la Copa del Mundo?",
-          "options": ["Andrés Iniesta", "Cristiano Ronaldo", "Zinedine Zidane", "Neymar Jr."],
-          "correct": 1
-        },
-        {
-          "text": "¿Quién es el jugador más joven en anotar en una final de Mundial?",
-          "options": ["Kylian Mbappé", "Pelé", "Gavi", "Lamine Yamal"],
-          "correct": 1
-        },
-        {
-          "text": "¿Quién es el máximo goleador en una sola edición de un Mundial?",
-          "options": ["Just Fontaine", "Gerd Müller", "Ronaldo Nazário", "Sandor Kocsis"],
-          "correct": 0
-        },
-        {
-          "text": "¿Quién es esta leyenda mundial?",
-          "image": "https://tntsports.cl/__export/1780503717316/sites/cdfchile/img/2026/06/03/tim_payne_escxndalo_en_pandemia_arrestado_conducir_ebrio_un_carrito_de_golf_1.png_423682103.png",
-          "options": ["Cristiano Ronaldo", "Neymar Jr.", "Tim Payne", "Zlatan Ibrahimović"],
-          "correct": 2
-        }
-      ]
-    },
-    {
-      "name": "Ronda 6 — Mundial 2026",
+      "name": "Ronda 4 — Mundial 2026",
       "emoji": "🌎",
       "timePerQuestion": 8,
       "questions": [
-        {
-          "text": "¿Cuáles son los tres países sedes del Mundial 2026?",
-          "options": ["USA, Canadá y México", "USA, México y Panamá", "Brasil, Argentina y Uruguay", "USA, Canadá y Groenlandia"],
-          "correct": 0
-        },
-        {
-          "text": "¿Cuántos equipos participarán en total en esta edición?",
-          "options": ["32", "40", "48", "64"],
-          "correct": 2
-        },
-        {
-          "text": "¿Cuál es la fecha programada para la gran final del Mundial 2026?",
-          "options": ["12 de junio", "4 de julio", "19 de julio", "15 de agosto"],
-          "correct": 2
-        },
-        {
-          "text": "¿Cuál es la canción oficial del Mundial 2026?",
-          "options": ["Waka Waka", "DNA", "Hayya Hayya", "Dai Dai"],
-          "correct": 3
-        },
-        {
-          "text": "¿Quién o quiénes interpretan la canción oficial del Mundial 2026?",
-          "options": ["Shakira y Burna Boy", "Pitbull y Jennifer Lopez", "J Balvin y Maluma", "David Guetta y Dua Lipa"],
-          "correct": 0
-        },
-        {
-          "text": "¿Cuál es el total de partidos que se jugarán en el Mundial 2026?",
-          "options": ["64", "80", "104", "120"],
-          "correct": 2
-        },
-        {
-          "text": "¿Cuál es el lema o marca oficial presentada por la FIFA para 2026?",
-          "options": ["United as One", "We Are 26", "Soccer is Back", "North America 2026"],
-          "correct": 1
-        }
+        { "type": "multiple", "text": "¿En qué países se celebrará de forma conjunta el Mundial de fútbol de 2026?", "options": ["Estados Unidos, Canadá y México", "Brasil, Argentina y Uruguay", "España, Portugal y Marruecos", "Estados Unidos, México y Panamá"], "correct": 0, "timeLimit": 8 },
+        { "type": "truefalse", "text": "En el nuevo formato del Mundial 2026, participarán 48 equipos y se disputarán exactamente 102 partidos.", "options": ["Verdadero", "Falso"], "correct": 1, "timeLimit": 5 },
+        { "type": "multiple", "text": "¿Cuál es el lema o marca oficial presentada por la FIFA para el Mundial 2026?", "options": ["United as One (Unidos como uno)", "We Are 26 (Somos 26)", "The World is Playing (El mundo juega)", "Football Returns Home (El fútbol vuelve a casa)"], "correct": 1, "timeLimit": 8 },
+        { "type": "combo", "text": "¿Cuáles de las siguientes afirmaciones sobre el Mundial 2026 son correctas?\n1. Este mundial será la edición más larga de la historia.\n2. Es el primer mundial organizado conjuntamente por 3 países.\n3. Los partidos durarán 60 minutos en tiempo cronometrado.", "options": ["1 y 3", "Solo 2", "1 y 2", "Todas son correctas"], "correct": 2, "timeLimit": 8 },
+        { "type": "multiple", "text": "¿Cuál es la canción oficial que la FIFA presentó para el Mundial 2026?", "options": ["Waka Waka, por Shakira", "Dai Dai, por Shakira y Burna Boy", "Hayya Hayya, por Trinidad Cardona", "Live It Up, por Nicky Jam y Will Smith"], "correct": 1, "timeLimit": 8 },
+        { "type": "multiple", "text": "¿Cuáles son las 3 mascotas oficiales que representan a los países anfitriones del Mundial 2026?", "options": ["Striker, Footix y Zakumi", "Burgie (EE.UU.), Taco (México) y Moose (Canadá)", "Spike, Juanito y Maple", "Weam, Bob y Tico"], "correct": 1, "timeLimit": 8 },
+        { "type": "truefalse", "text": "La gran final del Mundial 2026 se jugará en la Ciudad de México, en el histórico Estadio Azteca.", "options": ["Verdadero", "Falso"], "correct": 1, "timeLimit": 5 },
+        { "type": "multiple", "text": "¿Qué futbolista se transformó en 'Trending Topic' y fenómeno viral en redes sociales justo antes de arrancar este mundial?", "options": ["Kylian Mbappé", "Tim Payne", "Lionel Messi", "Lamine Yamal"], "correct": 1, "timeLimit": 8 }
       ]
     }
   ]
