@@ -31,7 +31,6 @@
   .screen { display: none; }
   .screen.active { display: block; }
 
-  /* ── WAITING ── */
   .wait-icon { font-size: 64px; text-align: center; margin: 28px 0 14px; }
   .wait-title { text-align: center; font-size: 22px; font-weight: 700; }
   .wait-sub { text-align: center; color: var(--muted); margin-top: 8px; font-size: 14px; }
@@ -49,12 +48,10 @@
   .btn-ready:disabled { opacity: 0.5; cursor: default; transform: none; }
   .ready-msg { display: none; text-align: center; margin-top: 14px; color: var(--green); font-weight: 700; font-size: 16px; }
 
-  /* ── ROUND INTRO ── */
   .round-icon { font-size: 72px; text-align: center; margin: 36px 0 12px; }
   .round-label { text-align: center; font-size: 12px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
   .round-name { text-align: center; font-size: 28px; font-weight: 800; color: var(--yellow); margin-top: 6px; }
 
-  /* ── QUESTION ── */
   .q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
   .q-round { font-size: 12px; color: var(--muted); }
   .q-counter { font-size: 12px; color: var(--muted); }
@@ -65,7 +62,7 @@
   .timer-bar { width: 100%; height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 18px; overflow: hidden; }
   .timer-fill { height: 100%; background: var(--yellow); border-radius: 3px; transition: width 1s linear; }
   .timer-fill.urgent { background: var(--red); }
-  .q-text { font-size: 19px; font-weight: 700; line-height: 1.4; margin-bottom: 18px; }
+  .q-text { font-size: 18px; font-weight: 700; line-height: 1.5; margin-bottom: 18px; white-space: pre-line; }
   .options { display: flex; flex-direction: column; gap: 10px; }
   .opt { width: 100%; padding: 15px 18px; border-radius: 10px; border: 2px solid var(--border); background: var(--card); color: var(--text); font-size: 16px; font-weight: 600; text-align: left; cursor: pointer; transition: all .12s; display: flex; align-items: center; gap: 12px; }
   .opt:active { transform: scale(0.98); }
@@ -75,13 +72,15 @@
   .opt.correct  { border-color: var(--green); background: rgba(0,200,83,.15); color: var(--green); font-weight: 700; }
   .opt.wrong    { border-color: var(--red); background: rgba(255,68,68,.08); opacity: 0.7; }
   .opt.correct-other { border-color: var(--green); background: rgba(0,200,83,.07); }
+  .options.opts-2 { flex-direction: row; gap: 12px; }
+  .options.opts-2 .opt { flex: 1; flex-direction: column; align-items: center; justify-content: center; padding: 28px 10px; font-size: 18px; text-align: center; }
+  .options.opts-2 .opt-letter { margin-bottom: 6px; }
   .opt-letter { font-size: 13px; font-weight: 800; width: 28px; height: 28px; border-radius: 6px; background: var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .opt.selected .opt-letter    { background: var(--blue); color: #fff; }
   .opt.correct .opt-letter     { background: var(--green); color: #000; }
   .opt.wrong .opt-letter       { background: rgba(255,68,68,.3); }
   .opt.correct-other .opt-letter { background: var(--green); color: #000; }
 
-  /* ── FINAL ── */
   .final-icon  { font-size: 80px; text-align: center; margin: 24px 0 8px; }
   .final-label { text-align: center; font-size: 12px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
   .final-name  { text-align: center; font-size: 30px; font-weight: 900; color: var(--yellow); margin-top: 4px; }
@@ -106,7 +105,6 @@
 
 <main>
 
-  <!-- WAITING -->
   <div class="screen active" id="screen-waiting">
     <div class="wait-icon" id="wait-icon">🏁</div>
     <div class="wait-title" id="wait-title">Esperando al facilitador...</div>
@@ -123,14 +121,12 @@
     <div class="ready-msg" id="ready-msg">✓ Confirmado — esperando al facilitador</div>
   </div>
 
-  <!-- ROUND INTRO -->
   <div class="screen" id="screen-round">
     <div class="round-icon" id="round-icon">⚡</div>
     <div class="round-label">PRÓXIMA RONDA</div>
     <div class="round-name" id="round-name">Ronda</div>
   </div>
 
-  <!-- QUESTION -->
   <div class="screen" id="screen-question">
     <div class="q-header">
       <span class="q-round" id="q-round-label"></span>
@@ -142,7 +138,6 @@
     <div class="options" id="q-options"></div>
   </div>
 
-  <!-- FINAL -->
   <div class="screen" id="screen-final">
     <div class="final-icon" id="final-icon">🏆</div>
     <div class="final-label">RESULTADO FINAL</div>
@@ -161,31 +156,26 @@ let selectedAnswer = null;
 let timerInterval = null;
 let myScore = 0;
 
-// Load config
 fetch('/api/config').then(r => r.json()).then(cfg => {
   const team = cfg.teams.find(t => t.id === teamId);
   document.getElementById('badge').textContent = '🎮 ' + cfg.title.toUpperCase();
   document.getElementById('game-title').textContent = cfg.title;
   document.title = cfg.title + (team ? ' — ' + team.name : '');
-
   if (team) {
     document.getElementById('wait-icon').textContent = team.emoji || '🏁';
     document.getElementById('team-name-tag').textContent = (team.emoji || '') + ' ' + team.name;
   }
-
   document.getElementById('rules-list').innerHTML = [
     { icon: '🔄', text: cfg.totalRounds + ' rondas · ' + cfg.totalQuestions + ' preguntas en total' },
     { icon: '👥', text: 'Solo <strong>una persona</strong> por equipo toca la pantalla — ¡decidan juntos!' },
     { icon: '🎯', text: '1 punto por respuesta correcta, 0 por incorrecta o sin respuesta' },
     { icon: '⚡', text: '8 segundos por pregunta' },
   ].map(r => '<div class="rule-item"><div class="rule-icon">' + r.icon + '</div><div>' + r.text + '</div></div>').join('');
-
   document.getElementById('rounds-list').innerHTML = cfg.rounds.map(r =>
     '<div class="round-item"><span>' + r.emoji + ' ' + r.name + '</span><span class="round-count">' + r.count + ' preguntas</span></div>'
   ).join('');
 });
 
-// Join
 socket.emit('team:join', { teamId: teamId });
 
 socket.on('team:state', function(state) {
@@ -220,8 +210,6 @@ socket.on('question:reveal', function(data) {
   clearInterval(timerInterval);
   var correctIndex = data.correctIndex;
   var myAnswer = data.answers && data.answers[teamId];
-
-  // Highlight correct/wrong in-place — NO screen switch
   var btns = document.querySelectorAll('#q-options .opt');
   for (var i = 0; i < btns.length; i++) {
     btns[i].disabled = true;
@@ -232,12 +220,11 @@ socket.on('question:reveal', function(data) {
       btns[i].classList.add('wrong');
     }
   }
-
+  var correct = myAnswer && myAnswer.answerIndex === correctIndex;
   var timer = document.getElementById('q-timer');
-  timer.textContent = (myAnswer && myAnswer.answerIndex === correctIndex) ? '✓' : '✗';
+  timer.textContent = correct ? '✓' : '✗';
   timer.className = 'q-timer done';
   document.getElementById('timer-fill').style.width = '0%';
-  // Server will push question:show for next question in 2 seconds
 });
 
 socket.on('game:end', function(data) {
@@ -264,7 +251,9 @@ function renderQuestion(q) {
   document.getElementById('q-counter-label').textContent = (q.questionIndex + 1) + '/' + q.totalInRound;
   document.getElementById('q-text').textContent = q.text;
   var letters = ['A','B','C','D'];
-  document.getElementById('q-options').innerHTML = q.options.map(function(opt, i) {
+  var container = document.getElementById('q-options');
+  container.className = 'options' + (q.options.length === 2 ? ' opts-2' : '');
+  container.innerHTML = q.options.map(function(opt, i) {
     return '<button class="opt" id="opt-' + i + '" onclick="selectAnswer(' + i + ')">' +
       '<div class="opt-letter">' + letters[i] + '</div>' +
       '<span>' + opt + '</span>' +
